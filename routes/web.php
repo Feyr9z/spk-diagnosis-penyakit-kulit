@@ -10,6 +10,7 @@ use App\Http\Controllers\PenyakitController;
 use App\Http\Controllers\NilaiKecocokanController;
 use App\Http\Controllers\DiagnosisController;
 use App\Http\Controllers\RiwayatController;
+use App\Http\Controllers\DashboardController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -23,9 +24,7 @@ Route::get('/', function () {
 
 Route::middleware(['auth', 'role:super_admin,admin'])->group(function () {
 
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
