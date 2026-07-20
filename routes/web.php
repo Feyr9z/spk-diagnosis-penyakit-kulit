@@ -7,6 +7,7 @@ use Inertia\Inertia;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GejalaController;
 use App\Http\Controllers\PenyakitController;
+use App\Http\Controllers\NilaiKecocokanController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -31,6 +32,7 @@ Route::middleware(['auth', 'role:super_admin,admin'])->group(function () {
     Route::resource('users', UserController::class);
     Route::resource('gejala', GejalaController::class)->except(['show']);
     Route::resource('penyakit', PenyakitController::class)->except(['show']);
+    Route::resource('nilai-kecocokan', NilaiKecocokanController::class)->except(['show']);
 });
 
 require __DIR__.'/auth.php';
