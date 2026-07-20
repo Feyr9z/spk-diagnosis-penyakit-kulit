@@ -9,6 +9,7 @@ use App\Http\Controllers\GejalaController;
 use App\Http\Controllers\PenyakitController;
 use App\Http\Controllers\NilaiKecocokanController;
 use App\Http\Controllers\DiagnosisController;
+use App\Http\Controllers\RiwayatController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -39,6 +40,10 @@ Route::middleware(['auth', 'role:super_admin,admin'])->group(function () {
     Route::get('/diagnosis/create', [DiagnosisController::class, 'create'])->name('diagnosis.create');
     Route::post('/diagnosis', [DiagnosisController::class, 'store'])->name('diagnosis.store');
     Route::get('/diagnosis/{diagnosis}', [DiagnosisController::class, 'show'])->name('diagnosis.show');
+
+    Route::get('/riwayat', [RiwayatController::class, 'index'])->name('riwayat.index');
+    Route::get('/riwayat/{diagnosis}', [RiwayatController::class, 'show'])->name('riwayat.show');
+    Route::delete('/riwayat/{diagnosis}', [RiwayatController::class, 'destroy'])->name('riwayat.destroy');
 });
 
 require __DIR__.'/auth.php';
