@@ -82,17 +82,17 @@ const jenisKelaminLabel = (jk) => jk === 'L' ? 'Laki-laki' : 'Perempuan';
                                     {{ index + 1 }}
                                 </td>
                                 <td class="px-6 py-4 text-sm">
-                                    <div class="font-bold text-white mb-0.5">{{ item.pasien.nama }}</div>
-                                    <div class="text-xs text-slate-400 flex items-center gap-1">
+                                    <div class="font-bold text-white mb-0.5">{{ item.pasien?.nama ?? 'Pasien Dihapus' }}</div>
+                                    <div v-if="item.pasien" class="text-xs text-slate-400 flex items-center gap-1">
                                         <User class="w-3 h-3" /> {{ item.pasien.usia }} thn &bull; {{ jenisKelaminLabel(item.pasien.jenis_kelamin) }}
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 text-sm">
-                                    <span class="font-bold text-indigo-400">{{ item.penyakit.kode_penyakit }}</span>
-                                    <div class="text-slate-300 font-medium">{{ item.penyakit.nama_penyakit }}</div>
+                                    <span class="font-bold text-indigo-400">{{ item.penyakit?.kode_penyakit ?? '-' }}</span>
+                                    <div class="text-slate-300 font-medium">{{ item.penyakit?.nama_penyakit ?? 'Penyakit Dihapus' }}</div>
                                 </td>
                                 <td class="whitespace-nowrap px-6 py-4 text-sm font-bold text-amber-400">
-                                    {{ Number(item.nilai_preferensi).toFixed(4) }}
+                                    {{ item.nilai_preferensi ? Number(item.nilai_preferensi).toFixed(4) : '-' }}
                                 </td>
                                 <td class="whitespace-nowrap px-6 py-4 text-sm text-slate-400">
                                     <div class="flex items-center gap-1.5">

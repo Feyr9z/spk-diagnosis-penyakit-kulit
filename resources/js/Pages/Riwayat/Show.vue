@@ -64,8 +64,8 @@ const tanggal = (dateStr) => {
                         <User class="w-6 h-6 text-indigo-400" />
                     </div>
                     <div>
-                        <h3 class="text-xl font-bold text-white">{{ diagnosis.pasien.nama }}</h3>
-                        <p class="text-sm text-slate-400 flex items-center gap-2 mt-1">
+                        <h3 class="text-xl font-bold text-white">{{ diagnosis.pasien?.nama ?? 'Pasien Dihapus' }}</h3>
+                        <p v-if="diagnosis.pasien" class="text-sm text-slate-400 flex items-center gap-2 mt-1">
                             <span>{{ diagnosis.pasien.usia }} Tahun</span> &bull; 
                             <span>{{ jenisKelaminLabel(diagnosis.pasien.jenis_kelamin) }}</span>
                         </p>
@@ -108,7 +108,7 @@ const tanggal = (dateStr) => {
                         <div v-if="hasilSAW.ranking[1]" class="order-2 md:order-1 flex flex-col items-center w-full md:w-1/4 transform hover:-translate-y-2 transition-transform duration-300">
                             <div class="mb-3 text-center">
                                 <p class="text-xs font-bold text-slate-400 mb-1">JUARA 2</p>
-                                <p class="font-bold text-white text-sm px-2">{{ hasilSAW.ranking[1].penyakit.nama_penyakit }}</p>
+                                <p class="font-bold text-white text-sm px-2">{{ hasilSAW.ranking[1].penyakit?.nama_penyakit ?? 'Penyakit Dihapus' }}</p>
                                 <p class="text-xs text-indigo-300">{{ hasilSAW.ranking[1].nilai_preferensi }}</p>
                             </div>
                             <div class="w-full bg-gradient-to-t from-slate-900 to-slate-700 border-t-2 border-slate-500 rounded-t-lg h-24 flex items-center justify-center shadow-lg">
@@ -122,7 +122,7 @@ const tanggal = (dateStr) => {
                                 <div class="w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 mx-auto flex items-center justify-center mb-2 shadow-[0_0_15px_rgba(245,158,11,0.5)]">
                                     <Award class="w-6 h-6" />
                                 </div>
-                                <p class="font-black text-white text-lg px-2 text-shadow-sm">{{ hasilSAW.ranking[0].penyakit.nama_penyakit }}</p>
+                                <p class="font-black text-white text-lg px-2 text-shadow-sm">{{ hasilSAW.ranking[0].penyakit?.nama_penyakit ?? 'Penyakit Dihapus' }}</p>
                                 <p class="text-sm font-bold text-amber-400 mt-1">{{ hasilSAW.ranking[0].nilai_preferensi }}</p>
                             </div>
                             <div class="w-full bg-gradient-to-t from-amber-900/50 to-amber-600/50 border-t-4 border-amber-400 rounded-t-lg h-36 flex items-center justify-center shadow-lg relative overflow-hidden">
@@ -135,7 +135,7 @@ const tanggal = (dateStr) => {
                         <div v-if="hasilSAW.ranking[2]" class="order-3 md:order-3 flex flex-col items-center w-full md:w-1/4 transform hover:-translate-y-2 transition-transform duration-300">
                             <div class="mb-3 text-center">
                                 <p class="text-xs font-bold text-orange-900/80 mb-1 text-slate-400">JUARA 3</p>
-                                <p class="font-bold text-white text-sm px-2">{{ hasilSAW.ranking[2].penyakit.nama_penyakit }}</p>
+                                <p class="font-bold text-white text-sm px-2">{{ hasilSAW.ranking[2].penyakit?.nama_penyakit ?? 'Penyakit Dihapus' }}</p>
                                 <p class="text-xs text-indigo-300">{{ hasilSAW.ranking[2].nilai_preferensi }}</p>
                             </div>
                             <div class="w-full bg-gradient-to-t from-slate-900 to-orange-900/30 border-t-2 border-orange-700/50 rounded-t-lg h-20 flex items-center justify-center shadow-lg">
