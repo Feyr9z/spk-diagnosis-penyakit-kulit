@@ -1,22 +1,19 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\PasswordController;
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\GejalaController;
-use App\Http\Controllers\PenyakitController;
-use App\Http\Controllers\NilaiKecocokanController;
-use App\Http\Controllers\DiagnosisController;
-use App\Http\Controllers\RiwayatController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DiagnosisController;
+use App\Http\Controllers\GejalaController;
+use App\Http\Controllers\NilaiKecocokanController;
+use App\Http\Controllers\PasswordController;
+use App\Http\Controllers\PenyakitController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RiwayatController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return redirect()->route('login');
 });
-
 
 Route::middleware(['auth', 'role:super_admin,admin'])->group(function () {
 

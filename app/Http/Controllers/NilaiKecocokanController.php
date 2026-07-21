@@ -7,6 +7,7 @@ use App\Http\Requests\NilaiKecocokan\UpdateNilaiKecocokanRequest;
 use App\Models\NilaiKecocokan;
 use App\Services\NilaiKecocokanService;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -20,7 +21,7 @@ class NilaiKecocokanController extends Controller
     {
         return Inertia::render('NilaiKecocokan/Index', [
             'penyakit' => $this->nilaiKecocokanService->getAllPenyakit(),
-            'gejala'   => $this->nilaiKecocokanService->getAllGejala(),
+            'gejala' => $this->nilaiKecocokanService->getAllGejala(),
             'nilaiKecocokan' => $this->nilaiKecocokanService->getAll(),
         ]);
     }
@@ -29,7 +30,7 @@ class NilaiKecocokanController extends Controller
     {
         return Inertia::render('NilaiKecocokan/Create', [
             'penyakit' => $this->nilaiKecocokanService->getAllPenyakit(),
-            'gejala'   => $this->nilaiKecocokanService->getAllGejala(),
+            'gejala' => $this->nilaiKecocokanService->getAllGejala(),
         ]);
     }
 
@@ -46,8 +47,8 @@ class NilaiKecocokanController extends Controller
     {
         return Inertia::render('NilaiKecocokan/Edit', [
             'nilaiKecocokan' => $nilaiKecocokan->load(['penyakit', 'gejala']),
-            'penyakit'       => $this->nilaiKecocokanService->getAllPenyakit(),
-            'gejala'         => $this->nilaiKecocokanService->getAllGejala(),
+            'penyakit' => $this->nilaiKecocokanService->getAllPenyakit(),
+            'gejala' => $this->nilaiKecocokanService->getAllGejala(),
         ]);
     }
 
@@ -69,7 +70,7 @@ class NilaiKecocokanController extends Controller
             ->with('success', 'Nilai kecocokan berhasil dihapus.');
     }
 
-    public function updateMatrix(\Illuminate\Http\Request $request)
+    public function updateMatrix(Request $request)
     {
         $data = $request->validate([
             'matrix' => 'required|array',

@@ -20,7 +20,7 @@ class GejalaSeeder extends Seeder
             ['kode_gejala' => 'G08', 'nama_gejala' => 'Rasa terbakar pada kulit',   'bobot' => 3.00, 'created_at' => now(), 'updated_at' => now()],
             ['kode_gejala' => 'G09', 'nama_gejala' => 'Kulit menebal',              'bobot' => 3.00, 'created_at' => now(), 'updated_at' => now()],
             ['kode_gejala' => 'G10', 'nama_gejala' => 'Infeksi atau nanah',         'bobot' => 5.00, 'created_at' => now(), 'updated_at' => now()],
-            ['kode_gejala' => 'G11', 'nama_gejala' => 'Rambut rontok di area kulit','bobot' => 2.00, 'created_at' => now(), 'updated_at' => now()],
+            ['kode_gejala' => 'G11', 'nama_gejala' => 'Rambut rontok di area kulit', 'bobot' => 2.00, 'created_at' => now(), 'updated_at' => now()],
             ['kode_gejala' => 'G12', 'nama_gejala' => 'Perubahan warna kulit',      'bobot' => 2.00, 'created_at' => now(), 'updated_at' => now()],
             ['kode_gejala' => 'G13', 'nama_gejala' => 'Kulit berminyak',            'bobot' => 2.00, 'created_at' => now(), 'updated_at' => now()],
             ['kode_gejala' => 'G14', 'nama_gejala' => 'Jerawat atau komedo',        'bobot' => 3.00, 'created_at' => now(), 'updated_at' => now()],

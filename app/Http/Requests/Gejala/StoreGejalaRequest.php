@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests\Gejala;
 
-use Illuminate\Foundation\Http\FormRequest;
 use App\Models\Gejala;
+use Illuminate\Foundation\Http\FormRequest;
 
 class StoreGejalaRequest extends FormRequest
 {
@@ -15,13 +15,13 @@ class StoreGejalaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'kode_gejala'  => ['required', 'string', 'max:20', 'unique:gejala,kode_gejala'],
-            'nama_gejala'  => ['required', 'string', 'max:255'],
-            'jenis'        => ['required', 'in:benefit,cost'],
-            'bobot'        => [
-                'required', 
-                'integer', 
-                'min:1', 
+            'kode_gejala' => ['required', 'string', 'max:20', 'unique:gejala,kode_gejala'],
+            'nama_gejala' => ['required', 'string', 'max:255'],
+            'jenis' => ['required', 'in:benefit,cost'],
+            'bobot' => [
+                'required',
+                'integer',
+                'min:1',
                 'max:100',
                 function ($attribute, $value, $fail) {
                     $totalBobot = Gejala::sum('bobot') + $value;
@@ -36,16 +36,16 @@ class StoreGejalaRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'kode_gejala.required'  => 'Kode gejala wajib diisi.',
-            'kode_gejala.unique'    => 'Kode gejala sudah digunakan.',
-            'kode_gejala.max'       => 'Kode gejala maksimal 20 karakter.',
-            'nama_gejala.required'  => 'Nama gejala wajib diisi.',
-            'jenis.required'        => 'Jenis gejala wajib dipilih.',
-            'jenis.in'              => 'Jenis gejala harus benefit atau cost.',
+            'kode_gejala.required' => 'Kode gejala wajib diisi.',
+            'kode_gejala.unique' => 'Kode gejala sudah digunakan.',
+            'kode_gejala.max' => 'Kode gejala maksimal 20 karakter.',
+            'nama_gejala.required' => 'Nama gejala wajib diisi.',
+            'jenis.required' => 'Jenis gejala wajib dipilih.',
+            'jenis.in' => 'Jenis gejala harus benefit atau cost.',
             'bobot.required' => 'Bobot wajib diisi.',
-            'bobot.integer'  => 'Bobot harus berupa angka.',
-            'bobot.min'      => 'Bobot minimal 1.',
-            'bobot.max'      => 'Bobot maksimal 100.',
+            'bobot.integer' => 'Bobot harus berupa angka.',
+            'bobot.min' => 'Bobot minimal 1.',
+            'bobot.max' => 'Bobot maksimal 100.',
         ];
     }
 }

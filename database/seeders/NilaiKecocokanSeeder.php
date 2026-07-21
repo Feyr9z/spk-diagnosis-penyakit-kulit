@@ -50,10 +50,10 @@ class NilaiKecocokanSeeder extends Seeder
 
         $records = array_map(fn ($row) => [
             'penyakit_id' => $row[0],
-            'gejala_id'   => $row[1],
-            'nilai'       => $row[2],
-            'created_at'  => now(),
-            'updated_at'  => now(),
+            'gejala_id' => $row[1],
+            'nilai' => $row[2],
+            'created_at' => now(),
+            'updated_at' => now(),
         ], $data);
 
         DB::table('nilai_kecocokan')->insert($records);

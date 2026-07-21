@@ -24,7 +24,7 @@ class UpdateNilaiKecocokanRequest extends FormRequest
                 })->ignore($this->route('nilai_kecocokan')),
             ],
             'gejala_id' => ['required', 'integer', 'exists:gejala,id'],
-            'nilai'     => ['required', 'integer', 'min:0', 'max:255'],
+            'nilai' => ['required', 'integer', 'min:0', 'max:255'],
         ];
     }
 
@@ -32,14 +32,14 @@ class UpdateNilaiKecocokanRequest extends FormRequest
     {
         return [
             'penyakit_id.required' => 'Penyakit wajib dipilih.',
-            'penyakit_id.exists'   => 'Penyakit tidak ditemukan.',
-            'penyakit_id.unique'   => 'Kombinasi penyakit dan gejala sudah ada.',
-            'gejala_id.required'   => 'Gejala wajib dipilih.',
-            'gejala_id.exists'     => 'Gejala tidak ditemukan.',
-            'nilai.required'       => 'Nilai wajib diisi.',
-            'nilai.integer'        => 'Nilai harus berupa angka.',
-            'nilai.min'            => 'Nilai minimal 0.',
-            'nilai.max'            => 'Nilai maksimal 255.',
+            'penyakit_id.exists' => 'Penyakit tidak ditemukan.',
+            'penyakit_id.unique' => 'Kombinasi penyakit dan gejala sudah ada.',
+            'gejala_id.required' => 'Gejala wajib dipilih.',
+            'gejala_id.exists' => 'Gejala tidak ditemukan.',
+            'nilai.required' => 'Nilai wajib diisi.',
+            'nilai.integer' => 'Nilai harus berupa angka.',
+            'nilai.min' => 'Nilai minimal 0.',
+            'nilai.max' => 'Nilai maksimal 255.',
         ];
     }
 }

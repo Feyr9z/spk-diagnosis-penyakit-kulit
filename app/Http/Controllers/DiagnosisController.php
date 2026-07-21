@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Diagnosis\StoreDiagnosisRequest;
 use App\Models\Diagnosis;
 use App\Services\DiagnosisService;
+use App\Services\SAWService;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -33,8 +34,8 @@ class DiagnosisController extends Controller
 
         $diagnosis = $this->diagnosisService->proses(
             pasienData: [
-                'nama'          => $validated['nama'],
-                'usia'          => $validated['usia'],
+                'nama' => $validated['nama'],
+                'usia' => $validated['usia'],
                 'jenis_kelamin' => $validated['jenis_kelamin'],
             ],
             selectedGejalaIds: $validated['gejala_ids'],
@@ -45,19 +46,19 @@ class DiagnosisController extends Controller
             ->with('success', 'Diagnosis berhasil dilakukan.');
     }
 
-    public function show(Diagnosis $diagnosis, \App\Services\SAWService $sawService): Response
+    public function show(Diagnosis $diagnosis, SAWService $sawService): Response
     {
         $diagnosisFull = $this->diagnosisService->findWithRelations($diagnosis->id);
-        
+
         // Dapatkan gejala_id yang dipilih dari tabel diagnosis_detail
         $selectedGejalaIds = $diagnosisFull->details->pluck('gejala_id')->toArray();
-        
+
         // Kalkulasi ulang matriks untuk ditampilkan di hasil
         $hasilSAW = $sawService->hitung($selectedGejalaIds);
 
         return Inertia::render('Diagnosis/Show', [
             'diagnosis' => $diagnosisFull,
-            'hasilSAW'  => $hasilSAW,
+            'hasilSAW' => $hasilSAW,
         ]);
     }
 }

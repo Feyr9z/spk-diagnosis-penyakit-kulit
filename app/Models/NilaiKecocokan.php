@@ -3,8 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Penyakit;
-use App\Models\Gejala;
 
 class NilaiKecocokan extends Model
 {

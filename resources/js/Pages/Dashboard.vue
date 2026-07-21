@@ -40,7 +40,7 @@ const tanggal = (dateStr) => {
 
         <div class="space-y-6">
             <!-- Stats Row -->
-            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
                 <div class="relative overflow-hidden rounded-2xl border border-indigo-200 dark:border-indigo-500/30 bg-indigo-50/50 dark:bg-indigo-500/10 p-6 shadow-sm backdrop-blur-xl group transition-all hover:-translate-y-1 hover:shadow-md">
                     <div class="absolute -right-4 -top-4 text-indigo-600/10 dark:text-indigo-500/10 group-hover:scale-110 transition-transform duration-500">
                         <Activity class="w-32 h-32" />
@@ -63,14 +63,6 @@ const tanggal = (dateStr) => {
                     </div>
                     <p class="text-sm font-medium text-slate-500 dark:text-slate-400 relative z-10">Total Alternatif (Penyakit)</p>
                     <p class="mt-2 text-4xl font-extrabold text-slate-800 dark:text-white relative z-10">{{ stats.total_penyakit }}</p>
-                </div>
-
-                <div class="relative overflow-hidden rounded-2xl border border-slate-200/60 dark:border-slate-700/50 bg-white/80 dark:bg-slate-800/50 p-6 shadow-sm backdrop-blur-xl group transition-all hover:-translate-y-1 hover:shadow-md">
-                    <div class="absolute -right-4 -top-4 text-slate-100 dark:text-slate-700/50 group-hover:scale-110 transition-transform duration-500">
-                        <User class="w-32 h-32" />
-                    </div>
-                    <p class="text-sm font-medium text-slate-500 dark:text-slate-400 relative z-10">Total Pengguna</p>
-                    <p class="mt-2 text-4xl font-extrabold text-slate-800 dark:text-white relative z-10">{{ stats.total_user }}</p>
                 </div>
             </div>
 

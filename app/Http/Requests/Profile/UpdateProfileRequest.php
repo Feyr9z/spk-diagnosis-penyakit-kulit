@@ -15,7 +15,7 @@ class UpdateProfileRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nama'     => ['required', 'string', 'max:100'],
+            'nama' => ['required', 'string', 'max:100'],
             'username' => [
                 'required',
                 'string',
@@ -28,11 +28,11 @@ class UpdateProfileRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'nama.required'     => 'Nama wajib diisi.',
-            'nama.max'          => 'Nama maksimal 100 karakter.',
+            'nama.required' => 'Nama wajib diisi.',
+            'nama.max' => 'Nama maksimal 100 karakter.',
             'username.required' => 'Username wajib diisi.',
-            'username.max'      => 'Username maksimal 100 karakter.',
-            'username.unique'   => 'Username sudah digunakan.',
+            'username.max' => 'Username maksimal 100 karakter.',
+            'username.unique' => 'Username sudah digunakan.',
         ];
     }
 }

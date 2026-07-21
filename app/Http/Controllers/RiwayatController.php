@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Diagnosis;
+use App\Services\SAWService;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -20,16 +21,16 @@ class RiwayatController extends Controller
         ]);
     }
 
-    public function show(Diagnosis $diagnosis, \App\Services\SAWService $sawService): Response
+    public function show(Diagnosis $diagnosis, SAWService $sawService): Response
     {
         $diagnosis->load(['pasien', 'penyakit', 'details.gejala']);
-        
+
         $selectedGejalaIds = $diagnosis->details->pluck('gejala_id')->toArray();
         $hasilSAW = $sawService->hitung($selectedGejalaIds);
 
         return Inertia::render('Riwayat/Show', [
             'diagnosis' => $diagnosis,
-            'hasilSAW'  => $hasilSAW,
+            'hasilSAW' => $hasilSAW,
         ]);
     }
 

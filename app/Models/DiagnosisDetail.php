@@ -3,8 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Diagnosis;
-use App\Models\Gejala;
 
 class DiagnosisDetail extends Model
 {

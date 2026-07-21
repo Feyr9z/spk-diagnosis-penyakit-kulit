@@ -23,9 +23,9 @@ class DiagnosisService
         return DB::transaction(function () use ($pasienData, $selectedGejalaIds) {
             // 1. Simpan Pasien
             $pasien = Pasien::create([
-                'nama'          => $pasienData['nama'],
+                'nama' => $pasienData['nama'],
                 'jenis_kelamin' => $pasienData['jenis_kelamin'],
-                'usia'          => $pasienData['usia'],
+                'usia' => $pasienData['usia'],
             ]);
 
             // 2. Hitung SAW
@@ -33,8 +33,8 @@ class DiagnosisService
 
             // 3. Simpan Diagnosis
             $diagnosis = Diagnosis::create([
-                'pasien_id'        => $pasien->id,
-                'penyakit_id'      => $hasilSAW['penyakit']->id,
+                'pasien_id' => $pasien->id,
+                'penyakit_id' => $hasilSAW['penyakit']->id,
                 'nilai_preferensi' => $hasilSAW['nilai_preferensi'],
             ]);
 
@@ -42,9 +42,9 @@ class DiagnosisService
             $detailData = array_map(
                 fn ($gejalaId) => [
                     'diagnosis_id' => $diagnosis->id,
-                    'gejala_id'    => $gejalaId,
-                    'created_at'   => now(),
-                    'updated_at'   => now(),
+                    'gejala_id' => $gejalaId,
+                    'created_at' => now(),
+                    'updated_at' => now(),
                 ],
                 $selectedGejalaIds
             );
