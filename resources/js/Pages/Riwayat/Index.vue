@@ -46,8 +46,8 @@ const jenisKelaminLabel = (jk) => jk === 'L' ? 'Laki-laki' : 'Perempuan';
 
     <AuthenticatedLayout>
         <template #header>
-            <h2 class="text-2xl font-bold leading-tight text-white flex items-center gap-2">
-                <History class="w-6 h-6 text-indigo-400" />
+            <h2 class="text-2xl font-bold leading-tight text-slate-900 dark:text-white flex items-center gap-2">
+                <History class="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
                 Riwayat Diagnosis
             </h2>
         </template>
@@ -56,63 +56,64 @@ const jenisKelaminLabel = (jk) => jk === 'L' ? 'Laki-laki' : 'Perempuan';
             <div class="flex items-center justify-end">
                 <Link
                     :href="route('diagnosis.create')"
-                    class="flex items-center justify-center gap-2 rounded-xl bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    class="flex items-center justify-center gap-2 rounded-xl bg-indigo-600 px-4 py-2.5 text-sm font-bold text-white shadow-sm hover:bg-indigo-500 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                     <Activity class="w-4 h-4" /> Diagnosis Baru
                 </Link>
             </div>
 
-            <div class="rounded-2xl border border-slate-700/50 bg-slate-800/50 shadow-sm backdrop-blur-xl overflow-hidden">
+            <div class="rounded-2xl border border-slate-200/60 dark:border-slate-700/50 bg-white/80 dark:bg-slate-800/50 shadow-sm backdrop-blur-xl overflow-hidden transition-colors">
                 <div class="overflow-x-auto">
-                    <table class="min-w-full divide-y divide-slate-700/50">
-                        <thead class="bg-slate-800/80">
+                    <table class="min-w-full divide-y divide-slate-200/80 dark:divide-slate-700/50">
+                        <thead class="bg-slate-100/80 dark:bg-slate-800/80">
                             <tr>
-                                <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-400">No</th>
-                                <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-400">Pasien</th>
-                                <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-400">Hasil Diagnosis</th>
-                                <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-400">Nilai SPK</th>
-                                <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-400">Tanggal</th>
-                                <th class="px-6 py-4 text-center text-xs font-semibold uppercase tracking-wider text-slate-400">Aksi</th>
+                                <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400">No</th>
+                                <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400">Pasien</th>
+                                <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400">Hasil Diagnosis</th>
+                                <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400">Nilai SPK</th>
+                                <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400">Tanggal</th>
+                                <th class="px-6 py-4 text-center text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400">Aksi</th>
                             </tr>
                         </thead>
 
-                        <tbody class="divide-y divide-slate-700/50 bg-transparent">
-                            <tr v-for="(item, index) in riwayat" :key="item.id" class="hover:bg-slate-700/20 transition-colors group">
-                                <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-slate-400">
+                        <tbody class="divide-y divide-slate-200/80 dark:divide-slate-700/50 bg-transparent">
+                            <tr v-for="(item, index) in riwayat" :key="item.id" class="hover:bg-slate-50 dark:hover:bg-slate-700/20 transition-colors group">
+                                <td class="whitespace-nowrap px-6 py-4 text-sm font-semibold text-slate-500 dark:text-slate-400">
                                     {{ index + 1 }}
                                 </td>
                                 <td class="px-6 py-4 text-sm">
-                                    <div class="font-bold text-white mb-0.5">{{ item.pasien?.nama ?? 'Pasien Dihapus' }}</div>
-                                    <div v-if="item.pasien" class="text-xs text-slate-400 flex items-center gap-1">
+                                    <div class="font-extrabold text-slate-900 dark:text-white mb-0.5">{{ item.pasien?.nama ?? 'Pasien Dihapus' }}</div>
+                                    <div v-if="item.pasien" class="text-xs font-medium text-slate-500 dark:text-slate-400 flex items-center gap-1">
                                         <User class="w-3 h-3" /> {{ item.pasien.usia }} thn &bull; {{ jenisKelaminLabel(item.pasien.jenis_kelamin) }}
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 text-sm">
-                                    <span class="font-bold text-indigo-400">{{ item.penyakit?.kode_penyakit ?? '-' }}</span>
-                                    <div class="text-slate-300 font-medium">{{ item.penyakit?.nama_penyakit ?? 'Penyakit Dihapus' }}</div>
+                                    <span class="font-extrabold text-indigo-600 dark:text-indigo-400">{{ item.penyakit?.kode_penyakit ?? '-' }}</span>
+                                    <div class="text-slate-700 dark:text-slate-300 font-medium">{{ item.penyakit?.nama_penyakit ?? 'Penyakit Dihapus' }}</div>
                                 </td>
-                                <td class="whitespace-nowrap px-6 py-4 text-sm font-bold text-amber-400">
+                                <td class="whitespace-nowrap px-6 py-4 text-sm font-extrabold text-amber-600 dark:text-amber-400">
                                     {{ item.nilai_preferensi ? Number(item.nilai_preferensi).toFixed(4) : '-' }}
                                 </td>
-                                <td class="whitespace-nowrap px-6 py-4 text-sm text-slate-400">
+                                <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-slate-500 dark:text-slate-400">
                                     <div class="flex items-center gap-1.5">
-                                        <Calendar class="w-4 h-4 text-slate-500" /> {{ tanggal(item.created_at) }}
+                                        <Calendar class="w-4 h-4 text-slate-400 dark:text-slate-500" /> {{ tanggal(item.created_at) }}
                                     </div>
                                 </td>
-                                <td class="whitespace-nowrap px-6 py-4 text-center text-sm">
+
+                                <td class="whitespace-nowrap px-6 py-4 text-center text-sm font-medium">
                                     <template v-if="confirmingDelete === item.id">
-                                        <div class="flex items-center justify-center gap-2">
-                                            <span class="text-slate-400 text-xs">Yakin?</span>
-                                            <button @click="hapus(item.id)" class="text-rose-500 hover:text-rose-400 text-xs font-bold transition-colors">Ya</button>
-                                            <button @click="cancelDelete" class="text-slate-400 hover:text-slate-300 text-xs transition-colors">Batal</button>
+                                        <div class="flex items-center justify-center gap-3">
+                                            <span class="text-slate-500 dark:text-slate-400 text-xs font-semibold">Yakin?</span>
+                                            <button @click="hapus(item.id)" class="text-rose-600 dark:text-rose-500 hover:text-rose-700 dark:hover:text-rose-400 text-xs font-bold transition-colors">Ya</button>
+                                            <button @click="cancelDelete" class="text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-300 text-xs font-bold transition-colors">Batal</button>
                                         </div>
                                     </template>
                                     <template v-else>
                                         <div class="flex items-center justify-center gap-4">
-                                            <Link :href="route('riwayat.show', item.id)" class="text-indigo-400 hover:text-indigo-300 transition-colors" title="Lihat Detail">
+                                            <Link :href="route('riwayat.show', item.id)" class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 transition-colors" title="Lihat Detail">
                                                 <Eye class="w-4 h-4" />
                                             </Link>
-                                            <button @click="confirmDelete(item.id)" class="text-rose-500 hover:text-rose-400 transition-colors" title="Hapus Riwayat">
+                                            <button @click="confirmDelete(item.id)" class="text-rose-600 dark:text-rose-500 hover:text-rose-800 dark:hover:text-rose-400 transition-colors" title="Hapus Riwayat">
                                                 <Trash2 class="w-4 h-4" />
                                             </button>
                                         </div>
@@ -124,7 +125,7 @@ const jenisKelaminLabel = (jk) => jk === 'L' ? 'Laki-laki' : 'Perempuan';
                                 <td colspan="6" class="px-6 py-12 text-center text-sm text-slate-500">
                                     <div class="flex flex-col items-center justify-center gap-2">
                                         <History class="w-8 h-8 opacity-20" />
-                                        <p>Belum ada riwayat diagnosis tersimpan.</p>
+                                        <p class="font-medium">Belum ada riwayat diagnosis tersimpan.</p>
                                     </div>
                                 </td>
                             </tr>

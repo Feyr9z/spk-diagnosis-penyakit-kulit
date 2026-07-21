@@ -43,7 +43,7 @@ const setNilai = (penyakitId, gejalaId, value) => {
 
 const saveMatrix = () => {
     isProcessing.value = true;
-    
+
     // Convert matrixData object back to array
     const payload = [];
     Object.keys(matrixData.value).forEach(key => {
@@ -69,8 +69,8 @@ const saveMatrix = () => {
 
     <AuthenticatedLayout>
         <template #header>
-            <h2 class="text-2xl font-bold leading-tight text-white flex items-center gap-2">
-                <ClipboardList class="w-6 h-6 text-emerald-400" />
+            <h2 class="text-2xl font-bold leading-tight text-slate-900 dark:text-white flex items-center gap-2">
+                <ClipboardList class="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
                 Matriks Nilai Kecocokan
             </h2>
         </template>
@@ -78,8 +78,8 @@ const saveMatrix = () => {
         <div class="space-y-6">
             <!-- Header Actions -->
             <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                <p class="text-sm text-slate-400 max-w-2xl">
-                    Masukkan nilai kecocokan (<span class="font-bold text-slate-200">X<sub>ij</sub></span>) antara setiap Alternatif (Penyakit) dan Kriteria (Gejala). Perubahan tidak akan tersimpan sebelum Anda menekan tombol Simpan.
+                <p class="text-sm text-slate-500 dark:text-slate-400 max-w-2xl">
+                    Masukkan nilai kecocokan (<span class="font-bold text-slate-800 dark:text-slate-200">X<sub>ij</sub></span>) antara setiap Alternatif (Penyakit) dan Kriteria (Gejala). Perubahan tidak akan tersimpan sebelum Anda menekan tombol Simpan.
                 </p>
                 <button
                     @click="saveMatrix"
@@ -97,39 +97,39 @@ const saveMatrix = () => {
             </div>
 
             <!-- Matrix Table -->
-            <div class="rounded-2xl border border-slate-700/50 bg-slate-800/50 shadow-sm backdrop-blur-xl overflow-hidden relative">
-                
+            <div class="rounded-2xl border border-slate-200/60 dark:border-slate-700/50 bg-white/80 dark:bg-slate-800/50 shadow-sm backdrop-blur-xl overflow-hidden relative transition-colors">
+
                 <div v-if="penyakit.length === 0 || gejala.length === 0" class="p-12 text-center">
-                    <ClipboardList class="w-12 h-12 text-slate-600 mx-auto mb-4" />
-                    <p class="text-slate-400">Data Penyakit atau Gejala belum lengkap.</p>
+                    <ClipboardList class="w-12 h-12 text-slate-400 dark:text-slate-600 mx-auto mb-4" />
+                    <p class="text-slate-500 dark:text-slate-400 font-medium">Data Penyakit atau Gejala belum lengkap.</p>
                 </div>
 
                 <div v-else class="overflow-x-auto">
-                    <table class="min-w-full divide-y divide-slate-700/50">
-                        <thead class="bg-slate-800/80">
+                    <table class="min-w-full divide-y divide-slate-200/80 dark:divide-slate-700/50">
+                        <thead class="bg-slate-100/80 dark:bg-slate-800/80">
                             <tr>
-                                <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider text-slate-300 bg-slate-800/90 sticky left-0 z-10 border-r border-slate-700/50 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.3)]">
+                                <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 bg-slate-50/90 dark:bg-slate-800/90 sticky left-0 z-10 border-r border-slate-200/80 dark:border-slate-700/50 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.05)] dark:shadow-[2px_0_5px_-2px_rgba(0,0,0,0.3)] transition-colors">
                                     Alternatif \ Kriteria
                                 </th>
-                                <th 
-                                    v-for="g in gejala" 
-                                    :key="g.id" 
-                                    class="px-4 py-4 text-center text-xs font-semibold uppercase tracking-wider text-slate-400 min-w-[120px]"
+                                <th
+                                    v-for="g in gejala"
+                                    :key="g.id"
+                                    class="px-4 py-4 text-center text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 min-w-[120px]"
                                     :title="g.nama_gejala"
                                 >
                                     <div class="flex flex-col items-center gap-1">
-                                        <span class="text-emerald-400 font-bold">{{ g.kode_gejala }}</span>
-                                        <span class="text-[10px] text-slate-500 truncate max-w-[100px]">{{ g.nama_gejala }}</span>
+                                        <span class="text-emerald-600 dark:text-emerald-400 font-extrabold">{{ g.kode_gejala }}</span>
+                                        <span class="text-[10px] text-slate-500 dark:text-slate-500 truncate max-w-[100px]">{{ g.nama_gejala }}</span>
                                     </div>
                                 </th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-slate-700/50 bg-transparent">
-                            <tr v-for="p in penyakit" :key="p.id" class="hover:bg-slate-700/20 transition-colors group">
-                                <td class="whitespace-nowrap px-6 py-4 text-sm font-bold text-white bg-slate-800/90 group-hover:bg-slate-700/90 sticky left-0 z-10 border-r border-slate-700/50 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.3)] transition-colors">
+                        <tbody class="divide-y divide-slate-200/80 dark:divide-slate-700/50 bg-transparent">
+                            <tr v-for="p in penyakit" :key="p.id" class="hover:bg-slate-50 dark:hover:bg-slate-700/20 transition-colors group">
+                                <td class="whitespace-nowrap px-6 py-4 text-sm font-bold text-slate-900 dark:text-white bg-slate-50/90 dark:bg-slate-800/90 group-hover:bg-slate-100/90 dark:group-hover:bg-slate-700/90 sticky left-0 z-10 border-r border-slate-200/80 dark:border-slate-700/50 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.05)] dark:shadow-[2px_0_5px_-2px_rgba(0,0,0,0.3)] transition-colors">
                                     <div class="flex flex-col">
-                                        <span class="text-cyan-400">{{ p.kode_penyakit }}</span>
-                                        <span class="text-xs text-slate-400 font-medium truncate max-w-[180px]" :title="p.nama_penyakit">{{ p.nama_penyakit }}</span>
+                                        <span class="text-cyan-600 dark:text-cyan-400 font-extrabold">{{ p.kode_penyakit }}</span>
+                                        <span class="text-xs text-slate-600 dark:text-slate-400 font-medium truncate max-w-[180px]" :title="p.nama_penyakit">{{ p.nama_penyakit }}</span>
                                     </div>
                                 </td>
                                 <td v-for="g in gejala" :key="g.id" class="px-2 py-3 text-center">
@@ -139,7 +139,7 @@ const saveMatrix = () => {
                                         max="255"
                                         :value="getNilai(p.id, g.id)"
                                         @input="(e) => setNilai(p.id, g.id, e.target.value)"
-                                        class="w-20 rounded-lg border border-slate-600 bg-slate-900/50 px-2 py-1.5 text-center text-sm text-white placeholder-slate-600 focus:border-emerald-500 focus:ring-emerald-500/50 transition-colors"
+                                        class="w-20 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900/50 px-2 py-1.5 text-center text-sm font-bold text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-600 focus:border-emerald-500 focus:ring-emerald-500/50 transition-colors shadow-sm"
                                     />
                                 </td>
                             </tr>
