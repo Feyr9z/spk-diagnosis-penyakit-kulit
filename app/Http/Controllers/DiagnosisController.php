@@ -45,12 +45,19 @@ class DiagnosisController extends Controller
             ->with('success', 'Diagnosis berhasil dilakukan.');
     }
 
-    public function show(Diagnosis $diagnosis): Response
+    public function show(Diagnosis $diagnosis, \App\Services\SAWService $sawService): Response
     {
         $diagnosisFull = $this->diagnosisService->findWithRelations($diagnosis->id);
+        
+        // Dapatkan gejala_id yang dipilih dari tabel diagnosis_detail
+        $selectedGejalaIds = $diagnosisFull->details->pluck('gejala_id')->toArray();
+        
+        // Kalkulasi ulang matriks untuk ditampilkan di hasil
+        $hasilSAW = $sawService->hitung($selectedGejalaIds);
 
         return Inertia::render('Diagnosis/Show', [
             'diagnosis' => $diagnosisFull,
+            'hasilSAW'  => $hasilSAW,
         ]);
     }
 }

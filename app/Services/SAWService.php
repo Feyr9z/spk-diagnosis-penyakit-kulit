@@ -20,16 +20,20 @@ class SAWService
         $penyakitList = $this->getAllPenyakit();
 
         $decisionMatrix   = $this->buildDecisionMatrix($penyakitList, $gejalaList);
-        $normalizedMatrix = $this->normalize($decisionMatrix);
+        $normalizedMatrix = $this->normalize($decisionMatrix, $gejalaList);
         $preferenceValues = $this->hitungNilaiPreferensi($normalizedMatrix, $gejalaList);
         $ranking          = $this->rank($preferenceValues, $penyakitList);
 
-        $hasilTertinggi = $ranking[0];
+        $hasilTertinggi = $ranking[0] ?? null;
 
         return [
-            'penyakit'         => $hasilTertinggi['penyakit'],
-            'nilai_preferensi' => $hasilTertinggi['nilai_preferensi'],
+            'penyakit'         => $hasilTertinggi ? $hasilTertinggi['penyakit'] : null,
+            'nilai_preferensi' => $hasilTertinggi ? $hasilTertinggi['nilai_preferensi'] : 0,
             'ranking'          => $ranking,
+            'decision_matrix'  => $decisionMatrix,
+            'normalized_matrix'=> $normalizedMatrix,
+            'gejala_list'      => $gejalaList,
+            'penyakit_list'    => $penyakitList,
         ];
     }
 
@@ -40,7 +44,7 @@ class SAWService
     {
         return Gejala::whereIn('id', $selectedGejalaIds)
             ->orderBy('id')
-            ->get(['id', 'kode_gejala', 'nama_gejala', 'bobot']);
+            ->get(['id', 'kode_gejala', 'nama_gejala', 'bobot', 'jenis']);
     }
 
     /**
@@ -81,35 +85,45 @@ class SAWService
 
     /**
      * Normalisasi matriks keputusan.
-     * Setiap nilai dibagi dengan nilai maksimum pada kolomnya.
+     * Benefit = nilai / max. Cost = min / nilai.
      *
      * @param  array<int, array<int, float>>  $matrix
      * @return array<int, array<int, float>>
      */
-    private function normalize(array $matrix): array
+    private function normalize(array $matrix, \Illuminate\Support\Collection $gejalaList): array
     {
         if (empty($matrix)) {
             return [];
         }
 
-        // Kumpulkan nilai max untuk setiap kolom (gejala)
-        $columnMax = [];
+        // Kumpulkan nilai max dan min untuk setiap kolom (gejala)
+        $columnStats = [];
         foreach ($matrix as $row) {
             foreach ($row as $gejalaId => $nilai) {
-                if (! isset($columnMax[$gejalaId]) || $nilai > $columnMax[$gejalaId]) {
-                    $columnMax[$gejalaId] = $nilai;
+                if (!isset($columnStats[$gejalaId])) {
+                    $columnStats[$gejalaId] = ['max' => $nilai, 'min' => $nilai];
+                } else {
+                    if ($nilai > $columnStats[$gejalaId]['max']) $columnStats[$gejalaId]['max'] = $nilai;
+                    if ($nilai < $columnStats[$gejalaId]['min']) $columnStats[$gejalaId]['min'] = $nilai;
                 }
             }
         }
 
-        // Normalisasi: nilai / max kolom (jika max = 0, hasil = 0)
+        // Normalisasi
         $normalized = [];
         foreach ($matrix as $penyakitId => $row) {
             foreach ($row as $gejalaId => $nilai) {
-                $max = $columnMax[$gejalaId] ?? 0;
-                $normalized[$penyakitId][$gejalaId] = $max > 0
-                    ? round($nilai / $max, 4)
-                    : 0.0;
+                $gejala = $gejalaList->firstWhere('id', $gejalaId);
+                $isCost = $gejala && $gejala->jenis === 'cost';
+                
+                $max = $columnStats[$gejalaId]['max'] ?? 0;
+                $min = $columnStats[$gejalaId]['min'] ?? 0;
+                
+                if ($isCost) {
+                    $normalized[$penyakitId][$gejalaId] = $nilai > 0 ? round($min / $nilai, 4) : 0.0;
+                } else {
+                    $normalized[$penyakitId][$gejalaId] = $max > 0 ? round($nilai / $max, 4) : 0.0;
+                }
             }
         }
 
