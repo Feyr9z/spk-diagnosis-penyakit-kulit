@@ -35,6 +35,7 @@ Route::middleware(['auth', 'role:super_admin,admin'])->group(function () {
     Route::resource('users', UserController::class);
     Route::resource('gejala', GejalaController::class)->except(['show']);
     Route::resource('penyakit', PenyakitController::class)->except(['show']);
+    Route::post('nilai-kecocokan/matrix', [NilaiKecocokanController::class, 'updateMatrix'])->name('nilai-kecocokan.matrix');
     Route::resource('nilai-kecocokan', NilaiKecocokanController::class)->except(['show']);
 
     Route::get('/diagnosis', [DiagnosisController::class, 'index'])->name('diagnosis.index');

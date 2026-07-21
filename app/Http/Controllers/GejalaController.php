@@ -20,12 +20,15 @@ class GejalaController extends Controller
     {
         return Inertia::render('Gejala/Index', [
             'gejala' => $this->gejalaService->getAll(),
+            'total_bobot' => Gejala::sum('bobot'),
         ]);
     }
 
     public function create(): Response
     {
-        return Inertia::render('Gejala/Create');
+        return Inertia::render('Gejala/Create', [
+            'total_bobot' => Gejala::sum('bobot'),
+        ]);
     }
 
     public function store(StoreGejalaRequest $request): RedirectResponse
@@ -41,6 +44,7 @@ class GejalaController extends Controller
     {
         return Inertia::render('Gejala/Edit', [
             'gejala' => $gejala,
+            'total_bobot' => Gejala::sum('bobot'),
         ]);
     }
 

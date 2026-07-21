@@ -12,6 +12,7 @@ class Gejala extends Model
     protected $fillable = [
         'kode_gejala',
         'nama_gejala',
+        'jenis',
         'bobot',
     ];
 

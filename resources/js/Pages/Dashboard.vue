@@ -1,7 +1,7 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link } from '@inertiajs/vue3';
-import { ListTodo, Database, ClipboardList, Activity, History, ArrowRight } from 'lucide-vue-next';
+import { ListTodo, Database, ClipboardList, Activity, History, ArrowRight, User } from 'lucide-vue-next';
 
 const props = defineProps({
     stats: {

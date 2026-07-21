@@ -2,6 +2,7 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link, router } from '@inertiajs/vue3';
 import { ref } from 'vue';
+import { Database, Plus, Trash2, Edit } from 'lucide-vue-next';
 
 defineProps({
     penyakit: {
@@ -35,107 +36,80 @@ const hapus = (id) => {
 
     <AuthenticatedLayout>
         <template #header>
-            <h2 class="text-xl font-semibold leading-tight text-gray-800">
-                Master Penyakit
+            <h2 class="text-2xl font-bold leading-tight text-white flex items-center gap-2">
+                <Database class="w-6 h-6 text-cyan-400" />
+                Data Alternatif (Penyakit)
             </h2>
         </template>
 
-        <div class="py-12">
-            <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
-                    <div class="p-6">
+        <div class="space-y-6">
+            <div class="flex items-center justify-end">
+                <Link
+                    :href="route('penyakit.create')"
+                    class="flex items-center justify-center gap-2 rounded-xl bg-cyan-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-cyan-500 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-600"
+                >
+                    <Plus class="w-4 h-4" /> Tambah Alternatif
+                </Link>
+            </div>
 
-                        <div class="mb-6 flex justify-end">
-                            <Link
-                                :href="route('penyakit.create')"
-                                class="rounded-md bg-indigo-600 px-4 py-2 text-sm text-white hover:bg-indigo-700"
-                            >
-                                Tambah Penyakit
-                            </Link>
-                        </div>
+            <div class="rounded-2xl border border-slate-700/50 bg-slate-800/50 shadow-sm backdrop-blur-xl overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-slate-700/50">
+                        <thead class="bg-slate-800/80">
+                            <tr>
+                                <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-400">No</th>
+                                <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-400">Kode</th>
+                                <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-400">Nama Penyakit</th>
+                                <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-400">Deskripsi</th>
+                                <th class="px-6 py-4 text-center text-xs font-semibold uppercase tracking-wider text-slate-400">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-700/50 bg-transparent">
+                            <tr v-for="(item, index) in penyakit" :key="item.id" class="hover:bg-slate-700/20 transition-colors">
+                                <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-slate-400">
+                                    {{ index + 1 }}
+                                </td>
+                                <td class="whitespace-nowrap px-6 py-4 text-sm font-bold text-white">
+                                    {{ item.kode_penyakit }}
+                                </td>
+                                <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-slate-200">
+                                    {{ item.nama_penyakit }}
+                                </td>
+                                <td class="px-6 py-4 text-sm text-slate-400 max-w-xs truncate">
+                                    {{ item.deskripsi }}
+                                </td>
+                                <td class="whitespace-nowrap px-6 py-4 text-center text-sm font-medium">
+                                    <template v-if="confirmingDelete === item.id">
+                                        <div class="flex items-center justify-center gap-2">
+                                            <span class="text-slate-400 text-xs">Yakin?</span>
+                                            <button @click="hapus(item.id)" class="text-rose-500 hover:text-rose-400 text-xs font-bold transition-colors">Ya</button>
+                                            <button @click="cancelDelete" class="text-slate-400 hover:text-slate-300 text-xs transition-colors">Batal</button>
+                                        </div>
+                                    </template>
 
-                        <div class="overflow-x-auto">
-                            <table class="min-w-full divide-y divide-gray-200">
-                                <thead class="bg-gray-50">
-                                    <tr>
-                                        <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
-                                            No
-                                        </th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
-                                            Kode
-                                        </th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
-                                            Nama Penyakit
-                                        </th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
-                                            Deskripsi
-                                        </th>
-                                        <th class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider text-gray-500">
-                                            Aksi
-                                        </th>
-                                    </tr>
-                                </thead>
+                                    <template v-else>
+                                        <div class="flex items-center justify-center gap-4">
+                                            <Link :href="route('penyakit.edit', item.id)" class="text-cyan-400 hover:text-cyan-300 transition-colors" title="Edit">
+                                                <Edit class="w-4 h-4" />
+                                            </Link>
+                                            <button @click="confirmDelete(item.id)" class="text-rose-500 hover:text-rose-400 transition-colors" title="Hapus">
+                                                <Trash2 class="w-4 h-4" />
+                                            </button>
+                                        </div>
+                                    </template>
+                                </td>
+                            </tr>
 
-                                <tbody class="divide-y divide-gray-200 bg-white">
-                                    <tr v-for="(item, index) in penyakit" :key="item.id">
-                                        <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-700">
-                                            {{ index + 1 }}
-                                        </td>
-                                        <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900">
-                                            {{ item.kode_penyakit }}
-                                        </td>
-                                        <td class="px-6 py-4 text-sm text-gray-700">
-                                            {{ item.nama_penyakit }}
-                                        </td>
-                                        <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">
-                                            {{ item.deskripsi }}
-                                        </td>
-                                        <td class="whitespace-nowrap px-6 py-4 text-center text-sm">
-
-                                            <template v-if="confirmingDelete === item.id">
-                                                <span class="mr-2 text-gray-600 text-xs">Yakin hapus?</span>
-                                                <button
-                                                    @click="hapus(item.id)"
-                                                    class="mr-2 text-red-600 hover:underline text-xs font-semibold"
-                                                >
-                                                    Ya
-                                                </button>
-                                                <button
-                                                    @click="cancelDelete"
-                                                    class="text-gray-500 hover:underline text-xs"
-                                                >
-                                                    Batal
-                                                </button>
-                                            </template>
-
-                                            <template v-else>
-                                                <Link
-                                                    :href="route('penyakit.edit', item.id)"
-                                                    class="mr-3 text-indigo-600 hover:underline text-sm"
-                                                >
-                                                    Edit
-                                                </Link>
-                                                <button
-                                                    @click="confirmDelete(item.id)"
-                                                    class="text-red-600 hover:underline text-sm"
-                                                >
-                                                    Hapus
-                                                </button>
-                                            </template>
-
-                                        </td>
-                                    </tr>
-
-                                    <tr v-if="penyakit.length === 0">
-                                        <td colspan="5" class="px-6 py-4 text-center text-sm text-gray-500">
-                                            Belum ada data penyakit.
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                    </div>
+                            <tr v-if="penyakit.length === 0">
+                                <td colspan="5" class="px-6 py-12 text-center text-sm text-slate-500">
+                                    <div class="flex flex-col items-center justify-center gap-2">
+                                        <Database class="w-8 h-8 opacity-20" />
+                                        <p>Belum ada data alternatif (penyakit).</p>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

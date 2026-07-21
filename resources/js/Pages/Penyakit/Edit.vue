@@ -1,6 +1,7 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
+import { Database, ArrowLeft } from 'lucide-vue-next';
 
 const props = defineProps({
     penyakit: {
@@ -12,7 +13,7 @@ const props = defineProps({
 const form = useForm({
     kode_penyakit: props.penyakit.kode_penyakit,
     nama_penyakit: props.penyakit.nama_penyakit,
-    deskripsi: props.penyakit.deskripsi,
+    deskripsi: props.penyakit.deskripsi || '',
 });
 
 const submit = () => {
@@ -23,96 +24,96 @@ const submit = () => {
 </script>
 
 <template>
-    <Head title="Edit Penyakit" />
+    <Head title="Edit Alternatif (Penyakit)" />
 
     <AuthenticatedLayout>
         <template #header>
-            <h2 class="text-xl font-semibold leading-tight text-gray-800">
-                Edit Penyakit
-            </h2>
+            <div class="flex items-center gap-4">
+                <Link :href="route('penyakit.index')" class="p-2 rounded-xl bg-slate-800/50 text-slate-400 hover:text-white hover:bg-slate-700 transition-colors border border-slate-700/50">
+                    <ArrowLeft class="w-5 h-5" />
+                </Link>
+                <h2 class="text-2xl font-bold leading-tight text-white flex items-center gap-2">
+                    <Database class="w-6 h-6 text-cyan-400" />
+                    Edit Alternatif (Penyakit)
+                </h2>
+            </div>
         </template>
 
-        <div class="py-12">
-            <div class="mx-auto max-w-2xl sm:px-6 lg:px-8">
-                <div class="bg-white shadow-sm sm:rounded-lg">
-                    <div class="p-6">
-
-                        <form @submit.prevent="submit" class="space-y-5">
-
-                            <!-- Kode -->
-                            <div>
-                                <label for="kode_penyakit" class="block text-sm font-medium text-gray-700">
-                                    Kode Penyakit
-                                </label>
-                                <input
-                                    id="kode_penyakit"
-                                    v-model="form.kode_penyakit"
-                                    type="text"
-                                    maxlength="20"
-                                    class="mt-1 w-full rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                                    :class="{ 'border-red-500': form.errors.kode_penyakit }"
-                                />
-                                <p v-if="form.errors.kode_penyakit" class="mt-1 text-xs text-red-600">
-                                    {{ form.errors.kode_penyakit }}
-                                </p>
-                            </div>
-
-                            <!-- Nama -->
-                            <div>
-                                <label for="nama_penyakit" class="block text-sm font-medium text-gray-700">
-                                    Nama Penyakit
-                                </label>
-                                <input
-                                    id="nama_penyakit"
-                                    v-model="form.nama_penyakit"
-                                    type="text"
-                                    class="mt-1 w-full rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                                    :class="{ 'border-red-500': form.errors.nama_penyakit }"
-                                />
-                                <p v-if="form.errors.nama_penyakit" class="mt-1 text-xs text-red-600">
-                                    {{ form.errors.nama_penyakit }}
-                                </p>
-                            </div>
-
-                            <!-- Deskripsi -->
-                            <div>
-                                <label for="deskripsi" class="block text-sm font-medium text-gray-700">
-                                    Deskripsi
-                                </label>
-                                <textarea
-                                    id="deskripsi"
-                                    v-model="form.deskripsi"
-                                    rows="4"
-                                    class="mt-1 w-full rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                                    :class="{ 'border-red-500': form.errors.deskripsi }"
-                                ></textarea>
-                                <p v-if="form.errors.deskripsi" class="mt-1 text-xs text-red-600">
-                                    {{ form.errors.deskripsi }}
-                                </p>
-                            </div>
-
-
-                            <!-- Actions -->
-                            <div class="flex items-center justify-end gap-3 pt-2">
-                                <Link
-                                    :href="route('penyakit.index')"
-                                    class="rounded-md border px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
-                                >
-                                    Batal
-                                </Link>
-                                <button
-                                    type="submit"
-                                    :disabled="form.processing"
-                                    class="rounded-md bg-indigo-600 px-4 py-2 text-sm text-white hover:bg-indigo-700 disabled:opacity-50"
-                                >
-                                    {{ form.processing ? 'Menyimpan...' : 'Simpan Perubahan' }}
-                                </button>
-                            </div>
-
-                        </form>
-
+        <div class="space-y-6 max-w-3xl">
+            <div class="rounded-2xl border border-slate-700/50 bg-slate-800/50 shadow-sm backdrop-blur-xl p-6 md:p-8">
+                <form @submit.prevent="submit" class="space-y-6">
+                    <!-- Kode Penyakit -->
+                    <div class="space-y-2">
+                        <label for="kode_penyakit" class="block text-sm font-semibold text-slate-300">
+                            Kode Penyakit
+                        </label>
+                        <input
+                            id="kode_penyakit"
+                            v-model="form.kode_penyakit"
+                            type="text"
+                            class="block w-full rounded-xl border border-slate-600 bg-slate-900/50 px-4 py-3 text-sm text-white placeholder-slate-500 focus:border-cyan-500 focus:ring-cyan-500/50 transition-colors"
+                            :class="{ 'border-rose-500 focus:border-rose-500 focus:ring-rose-500/50': form.errors.kode_penyakit }"
+                        />
+                        <p v-if="form.errors.kode_penyakit" class="text-sm font-medium text-rose-500">
+                            {{ form.errors.kode_penyakit }}
+                        </p>
                     </div>
-                </div>
+
+                    <!-- Nama Penyakit -->
+                    <div class="space-y-2">
+                        <label for="nama_penyakit" class="block text-sm font-semibold text-slate-300">
+                            Nama Penyakit / Alternatif
+                        </label>
+                        <input
+                            id="nama_penyakit"
+                            v-model="form.nama_penyakit"
+                            type="text"
+                            class="block w-full rounded-xl border border-slate-600 bg-slate-900/50 px-4 py-3 text-sm text-white placeholder-slate-500 focus:border-cyan-500 focus:ring-cyan-500/50 transition-colors"
+                            :class="{ 'border-rose-500 focus:border-rose-500 focus:ring-rose-500/50': form.errors.nama_penyakit }"
+                        />
+                        <p v-if="form.errors.nama_penyakit" class="text-sm font-medium text-rose-500">
+                            {{ form.errors.nama_penyakit }}
+                        </p>
+                    </div>
+
+                    <!-- Deskripsi -->
+                    <div class="space-y-2">
+                        <label for="deskripsi" class="block text-sm font-semibold text-slate-300">
+                            Deskripsi (Opsional)
+                        </label>
+                        <textarea
+                            id="deskripsi"
+                            v-model="form.deskripsi"
+                            rows="4"
+                            class="block w-full rounded-xl border border-slate-600 bg-slate-900/50 px-4 py-3 text-sm text-white placeholder-slate-500 focus:border-cyan-500 focus:ring-cyan-500/50 transition-colors"
+                            :class="{ 'border-rose-500 focus:border-rose-500 focus:ring-rose-500/50': form.errors.deskripsi }"
+                        ></textarea>
+                        <p v-if="form.errors.deskripsi" class="text-sm font-medium text-rose-500">
+                            {{ form.errors.deskripsi }}
+                        </p>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="flex items-center justify-end gap-4 pt-4 border-t border-slate-700/50">
+                        <Link
+                            :href="route('penyakit.index')"
+                            class="rounded-xl border border-slate-600 bg-transparent px-5 py-2.5 text-sm font-semibold text-slate-300 hover:bg-slate-700 hover:text-white transition-colors"
+                        >
+                            Batal
+                        </Link>
+                        <button
+                            type="submit"
+                            :disabled="form.processing"
+                            class="rounded-xl bg-cyan-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-cyan-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-600 disabled:opacity-50 transition-all"
+                        >
+                            <span v-if="form.processing" class="flex items-center gap-2">
+                                <svg class="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                                Menyimpan...
+                            </span>
+                            <span v-else>Simpan Perubahan</span>
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </AuthenticatedLayout>

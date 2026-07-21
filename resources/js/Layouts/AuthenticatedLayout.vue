@@ -48,11 +48,11 @@ const navigation = [
             <div class="p-4 border-t border-slate-700/50 shrink-0">
                 <div class="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-slate-800/80 border border-slate-700">
                     <div class="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-white font-bold shrink-0">
-                        {{ $page.props.auth.user.name.charAt(0).toUpperCase() }}
+                        {{ $page.props.auth.user.nama ? $page.props.auth.user.nama.charAt(0).toUpperCase() : 'U' }}
                     </div>
                     <div class="flex-1 min-w-0">
-                        <p class="text-sm font-semibold text-white truncate">{{ $page.props.auth.user.name }}</p>
-                        <p class="text-xs text-slate-400 truncate">@{{ $page.props.auth.user.username }}</p>
+                        <p class="text-sm font-semibold text-white truncate">{{ $page.props.auth.user.nama || 'User' }}</p>
+                        <p class="text-xs text-slate-400 truncate">@{{ $page.props.auth.user.username || 'user' }}</p>
                     </div>
                 </div>
             </div>
