@@ -32,7 +32,7 @@ const submit = () => {
 
         <Head title="Login" />
 
-        <div v-if="status" class="mb-4 text-sm font-medium text-green-600">
+        <div v-if="status" class="mb-4 text-sm font-medium text-emerald-400">
             {{ status }}
         </div>
 
