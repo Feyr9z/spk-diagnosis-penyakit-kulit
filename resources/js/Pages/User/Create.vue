@@ -77,7 +77,6 @@ const submit = () => {
                                 required
                             >
                                 <option value="admin">Admin</option>
-                                <option value="super_admin">Super Admin</option>
                             </select>
                             <InputError class="mt-2" :message="form.errors.role" />
                         </div>
