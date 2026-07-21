@@ -8,7 +8,7 @@ class PenyakitService
 {
     public function getAll()
     {
-        return Penyakit::orderBy('kode')->get();
+        return Penyakit::orderBy('kode_penyakit')->get();
     }
 
     public function findById(int $id): ?Penyakit

@@ -23,12 +23,12 @@ class NilaiKecocokanService
 
     public function getAllPenyakit()
     {
-        return Penyakit::orderBy('kode')->get(['id', 'kode', 'nama']);
+        return Penyakit::orderBy('kode_penyakit')->get(['id', 'kode_penyakit', 'nama_penyakit']);
     }
 
     public function getAllGejala()
     {
-        return Gejala::orderBy('kode')->get(['id', 'kode', 'nama']);
+        return Gejala::orderBy('kode_gejala')->get(['id', 'kode_gejala', 'nama_gejala']);
     }
 
     public function store(array $data): NilaiKecocokan
