@@ -55,7 +55,7 @@ const submit = () => {
                                 <select
                                     id="penyakit_id"
                                     v-model="form.penyakit_id"
-                                    class="mt-1 w-full rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                    class="mt-1 w-full rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
                                     :class="{ 'border-red-500': form.errors.penyakit_id }"
                                 >
                                     <option value="" disabled>-- Pilih Penyakit --</option>
@@ -76,7 +76,7 @@ const submit = () => {
                                 <select
                                     id="gejala_id"
                                     v-model="form.gejala_id"
-                                    class="mt-1 w-full rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                    class="mt-1 w-full rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
                                     :class="{ 'border-red-500': form.errors.gejala_id }"
                                 >
                                     <option value="" disabled>-- Pilih Gejala --</option>
@@ -100,7 +100,7 @@ const submit = () => {
                                     type="number"
                                     min="0"
                                     max="255"
-                                    class="mt-1 w-full rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                    class="mt-1 w-full rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
                                     :class="{ 'border-red-500': form.errors.nilai }"
                                 />
                                 <p v-if="form.errors.nilai" class="mt-1 text-xs text-red-600">
@@ -119,7 +119,7 @@ const submit = () => {
                                 <button
                                     type="submit"
                                     :disabled="form.processing"
-                                    class="rounded-md bg-indigo-600 px-4 py-2 text-sm text-white hover:bg-indigo-700 disabled:opacity-50"
+                                    class="rounded-md bg-emerald-600 px-4 py-2 text-sm text-white hover:bg-emerald-700 disabled:opacity-50"
                                 >
                                     {{ form.processing ? 'Menyimpan...' : 'Simpan Perubahan' }}
                                 </button>

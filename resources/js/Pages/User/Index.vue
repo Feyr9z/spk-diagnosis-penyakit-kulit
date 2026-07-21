@@ -35,7 +35,7 @@ const deleteUser = (id) => {
     <AuthenticatedLayout>
         <template #header>
             <h2 class="text-2xl font-bold leading-tight text-slate-900 dark:text-white flex items-center gap-2">
-                <Users class="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
+                <Users class="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
                 Manajemen User
             </h2>
         </template>
@@ -48,7 +48,7 @@ const deleteUser = (id) => {
                 
                 <Link
                     :href="route('users.create')"
-                    class="inline-flex items-center justify-center gap-2 rounded-xl bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-all"
+                    class="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600 transition-all"
                 >
                     <Plus class="w-4 h-4" /> Tambah User
                 </Link>

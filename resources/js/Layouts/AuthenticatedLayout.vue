@@ -59,7 +59,7 @@ const navigation = computed(() => {
             <!-- Brand -->
             <div class="flex items-center justify-center h-20 border-b border-slate-200/60 dark:border-slate-700/50 px-6 shrink-0">
                 <Link :href="route('dashboard')" class="flex items-center gap-3">
-                    <Activity class="w-8 h-8 text-indigo-600 dark:text-indigo-500" />
+                    <Activity class="w-8 h-8 text-emerald-600 dark:text-emerald-500" />
                     <span class="text-xl font-bold text-slate-900 dark:text-white tracking-tight">Ermust Clinic</span>
                 </Link>
             </div>
@@ -67,8 +67,8 @@ const navigation = computed(() => {
             <!-- Nav Links -->
             <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
                 <Link v-for="item in navigation" :key="item.name" :href="item.href"
-                      :class="[item.current ? 'bg-indigo-50 dark:bg-indigo-600/10 text-indigo-700 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-500/20 shadow-sm' : 'border border-transparent text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700/50 hover:text-slate-900 dark:hover:text-white', 'group flex items-center px-4 py-3 text-sm font-semibold rounded-xl transition-all']">
-                    <component :is="item.icon" :class="[item.current ? 'text-indigo-600 dark:text-indigo-400' : 'text-slate-400 dark:text-slate-500 group-hover:text-slate-600 dark:group-hover:text-slate-300', 'flex-shrink-0 -ml-1 mr-3 h-5 w-5 transition-colors']" />
+                      :class="[item.current ? 'bg-emerald-50 dark:bg-emerald-600/10 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-500/20 shadow-sm' : 'border border-transparent text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700/50 hover:text-slate-900 dark:hover:text-white', 'group flex items-center px-4 py-3 text-sm font-semibold rounded-xl transition-all']">
+                    <component :is="item.icon" :class="[item.current ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-400 dark:text-slate-500 group-hover:text-slate-600 dark:group-hover:text-slate-300', 'flex-shrink-0 -ml-1 mr-3 h-5 w-5 transition-colors']" />
                     <span class="truncate">{{ item.name }}</span>
                 </Link>
             </nav>
@@ -76,7 +76,7 @@ const navigation = computed(() => {
             <!-- User Info (Bottom Sidebar) -->
             <div class="p-4 border-t border-slate-200/60 dark:border-slate-700/50 shrink-0">
                 <div class="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-slate-100/80 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 transition-colors">
-                    <div class="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-white font-bold shrink-0">
+                    <div class="w-10 h-10 rounded-full bg-emerald-600 flex items-center justify-center text-white font-bold shrink-0">
                         {{ $page.props.auth.user.nama ? $page.props.auth.user.nama.charAt(0).toUpperCase() : 'U' }}
                     </div>
                     <div class="flex-1 min-w-0">
@@ -105,7 +105,7 @@ const navigation = computed(() => {
                 <!-- Right Actions -->
                 <div class="flex items-center gap-2 sm:gap-4">
                     <!-- Theme Toggler -->
-                    <button @click="toggleTheme" class="p-2.5 text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-all focus:outline-none" title="Ubah Tema">
+                    <button @click="toggleTheme" class="p-2.5 text-slate-500 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-all focus:outline-none" title="Ubah Tema">
                         <Sun v-if="isDarkMode" class="w-5 h-5" />
                         <Moon v-else class="w-5 h-5" />
                     </button>

@@ -40,7 +40,7 @@ const tanggal = (dateStr) => {
                     <ArrowLeft class="w-5 h-5" />
                 </Link>
                 <h2 class="text-2xl font-bold leading-tight text-slate-900 dark:text-white flex items-center gap-2">
-                    <Award class="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
+                    <Award class="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
                     Laporan Hasil Diagnosis
                 </h2>
             </div>
@@ -51,8 +51,8 @@ const tanggal = (dateStr) => {
             <!-- Profil Singkat Pasien -->
             <div class="rounded-2xl border border-slate-200/60 dark:border-slate-700/50 bg-white/80 dark:bg-slate-800/50 shadow-sm backdrop-blur-xl p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 transition-colors">
                 <div class="flex items-center gap-4">
-                    <div class="h-12 w-12 rounded-full bg-indigo-50 dark:bg-indigo-500/20 flex items-center justify-center border border-indigo-200 dark:border-indigo-500/30">
-                        <User class="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
+                    <div class="h-12 w-12 rounded-full bg-emerald-50 dark:bg-emerald-500/20 flex items-center justify-center border border-emerald-200 dark:border-emerald-500/30">
+                        <User class="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
                     </div>
                     <div>
                         <h3 class="text-xl font-bold text-slate-900 dark:text-white">{{ diagnosis.pasien.nama }}</h3>
@@ -73,10 +73,10 @@ const tanggal = (dateStr) => {
 
             <!-- Tab Navigation -->
             <div class="flex overflow-x-auto space-x-2 border-b border-slate-200 dark:border-slate-700/50 pb-px">
-                <button @click="activeTab = 'hasil'" :class="activeTab === 'hasil' ? 'border-indigo-400 dark:border-indigo-500 text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-500/10' : 'border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 hover:border-slate-300 dark:hover:border-slate-600'" class="whitespace-nowrap flex items-center gap-2 py-3 px-5 border-b-2 font-bold text-sm transition-all rounded-t-lg">
+                <button @click="activeTab = 'hasil'" :class="activeTab === 'hasil' ? 'border-emerald-400 dark:border-emerald-500 text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-500/10' : 'border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 hover:border-slate-300 dark:hover:border-slate-600'" class="whitespace-nowrap flex items-center gap-2 py-3 px-5 border-b-2 font-bold text-sm transition-all rounded-t-lg">
                     <Award class="w-4 h-4" /> Hasil & Podium
                 </button>
-                <button @click="activeTab = 'matriks-x'" :class="activeTab === 'matriks-x' ? 'border-cyan-400 dark:border-cyan-500 text-cyan-600 dark:text-cyan-400 bg-cyan-50 dark:bg-cyan-500/10' : 'border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 hover:border-slate-300 dark:hover:border-slate-600'" class="whitespace-nowrap flex items-center gap-2 py-3 px-5 border-b-2 font-bold text-sm transition-all rounded-t-lg">
+                <button @click="activeTab = 'matriks-x'" :class="activeTab === 'matriks-x' ? 'border-emerald-400 dark:border-emerald-500 text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-500/10' : 'border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 hover:border-slate-300 dark:hover:border-slate-600'" class="whitespace-nowrap flex items-center gap-2 py-3 px-5 border-b-2 font-bold text-sm transition-all rounded-t-lg">
                     <TableProperties class="w-4 h-4" /> Matriks Keputusan (X)
                 </button>
                 <button @click="activeTab = 'matriks-r'" :class="activeTab === 'matriks-r' ? 'border-emerald-400 dark:border-emerald-500 text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-500/10' : 'border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 hover:border-slate-300 dark:hover:border-slate-600'" class="whitespace-nowrap flex items-center gap-2 py-3 px-5 border-b-2 font-bold text-sm transition-all rounded-t-lg">
@@ -101,7 +101,7 @@ const tanggal = (dateStr) => {
                             <div class="mb-3 text-center">
                                 <p class="text-xs font-bold text-slate-500 dark:text-slate-400 mb-1">JUARA 2</p>
                                 <p class="font-extrabold text-slate-900 dark:text-white text-sm px-2">{{ hasilSAW.ranking[1].penyakit?.nama_penyakit ?? 'Penyakit Dihapus' }}</p>
-                                <p class="text-xs font-bold text-indigo-600 dark:text-indigo-300">{{ hasilSAW.ranking[1].nilai_preferensi }}</p>
+                                <p class="text-xs font-bold text-emerald-600 dark:text-emerald-300">{{ hasilSAW.ranking[1].nilai_preferensi }}</p>
                             </div>
                             <div class="w-full bg-gradient-to-t from-slate-100 to-slate-200 dark:from-slate-900 dark:to-slate-700 border-t-2 border-slate-300 dark:border-slate-500 rounded-t-lg h-24 flex items-center justify-center shadow-lg">
                                 <span class="text-4xl font-black text-slate-400 dark:text-slate-500/50">2</span>
@@ -128,7 +128,7 @@ const tanggal = (dateStr) => {
                             <div class="mb-3 text-center">
                                 <p class="text-xs font-bold text-slate-500 dark:text-slate-400 mb-1">JUARA 3</p>
                                 <p class="font-extrabold text-slate-900 dark:text-white text-sm px-2">{{ hasilSAW.ranking[2].penyakit?.nama_penyakit ?? 'Penyakit Dihapus' }}</p>
-                                <p class="text-xs font-bold text-indigo-600 dark:text-indigo-300">{{ hasilSAW.ranking[2].nilai_preferensi }}</p>
+                                <p class="text-xs font-bold text-emerald-600 dark:text-emerald-300">{{ hasilSAW.ranking[2].nilai_preferensi }}</p>
                             </div>
                             <div class="w-full bg-gradient-to-t from-orange-50 to-orange-100 dark:from-slate-900 dark:to-orange-900/30 border-t-2 border-orange-200 dark:border-orange-700/50 rounded-t-lg h-20 flex items-center justify-center shadow-lg">
                                 <span class="text-3xl font-black text-orange-200 dark:text-orange-900/50">3</span>
@@ -142,7 +142,7 @@ const tanggal = (dateStr) => {
                     <!-- Penjelasan Penyakit -->
                     <div class="rounded-2xl border border-slate-200/60 dark:border-slate-700/50 bg-white/80 dark:bg-slate-800/50 shadow-sm backdrop-blur-xl p-6 transition-colors">
                         <div class="flex items-center gap-2 mb-4 pb-4 border-b border-slate-200 dark:border-slate-700">
-                            <Stethoscope class="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+                            <Stethoscope class="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
                             <h3 class="font-bold text-slate-900 dark:text-white">Deskripsi Medis</h3>
                         </div>
                         <p class="text-sm font-medium text-slate-700 dark:text-slate-300 leading-relaxed text-justify">
@@ -156,14 +156,14 @@ const tanggal = (dateStr) => {
                     <!-- Gejala Terpilih -->
                     <div class="rounded-2xl border border-slate-200/60 dark:border-slate-700/50 bg-white/80 dark:bg-slate-800/50 shadow-sm backdrop-blur-xl p-6 transition-colors">
                         <div class="flex items-center gap-2 mb-4 pb-4 border-b border-slate-200 dark:border-slate-700">
-                            <Activity class="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+                            <Activity class="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
                             <h3 class="font-bold text-slate-900 dark:text-white">Gejala Pasien</h3>
                         </div>
                         <div class="flex flex-wrap gap-2">
                             <span
                                 v-for="detail in diagnosis.details"
                                 :key="detail.id"
-                                class="inline-flex items-center rounded-lg bg-indigo-50 dark:bg-indigo-500/10 border border-indigo-200 dark:border-indigo-500/20 px-3 py-1.5 text-xs font-bold text-indigo-700 dark:text-indigo-300"
+                                class="inline-flex items-center rounded-lg bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/20 px-3 py-1.5 text-xs font-bold text-emerald-700 dark:text-emerald-300"
                             >
                                 {{ detail.gejala.kode_gejala }} — {{ detail.gejala.nama_gejala }}
                             </span>
@@ -180,7 +180,7 @@ const tanggal = (dateStr) => {
                     </Link>
                     <Link
                         :href="route('diagnosis.create')"
-                        class="rounded-xl bg-indigo-600 px-5 py-2.5 text-sm font-bold text-white shadow-sm hover:bg-indigo-500 transition-colors"
+                        class="rounded-xl bg-emerald-600 px-5 py-2.5 text-sm font-bold text-white shadow-sm hover:bg-emerald-500 transition-colors"
                     >
                         Diagnosis Pasien Baru
                     </Link>
@@ -196,7 +196,7 @@ const tanggal = (dateStr) => {
                         <thead class="bg-slate-50 dark:bg-slate-800">
                             <tr>
                                 <th class="px-4 py-3 text-left text-xs font-bold text-slate-700 dark:text-slate-300 border-r border-slate-200 dark:border-slate-700/50">Alternatif</th>
-                                <th v-for="g in hasilSAW.gejala_list" :key="g.id" class="px-4 py-3 text-center text-xs font-bold text-cyan-600 dark:text-cyan-400">{{ g.kode_gejala }}</th>
+                                <th v-for="g in hasilSAW.gejala_list" :key="g.id" class="px-4 py-3 text-center text-xs font-bold text-emerald-600 dark:text-emerald-400">{{ g.kode_gejala }}</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-slate-200 dark:divide-slate-700/50 bg-white dark:bg-slate-900/30">

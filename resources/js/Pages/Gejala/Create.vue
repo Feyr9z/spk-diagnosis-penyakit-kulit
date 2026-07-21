@@ -35,7 +35,7 @@ const submit = () => {
                     <ArrowLeft class="w-6 h-6" />
                 </Link>
                 <h2 class="text-2xl font-bold leading-tight text-slate-900 dark:text-white flex items-center gap-2">
-                    <ListTodo class="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
+                    <ListTodo class="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
                     Tambah Kriteria Gejala
                 </h2>
             </div>
@@ -63,7 +63,7 @@ const submit = () => {
                             type="text"
                             maxlength="20"
                             placeholder="Contoh: G01"
-                            class="w-full rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900/50 px-4 py-3 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors"
+                            class="w-full rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900/50 px-4 py-3 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-colors"
                             :class="{ 'border-rose-300 focus:border-rose-500 focus:ring-rose-500 dark:border-rose-500': form.errors.kode_gejala }"
                         />
                         <p v-if="form.errors.kode_gejala" class="mt-2 text-xs font-semibold text-rose-600 dark:text-rose-400">
@@ -81,7 +81,7 @@ const submit = () => {
                             v-model="form.nama_gejala"
                             type="text"
                             placeholder="Contoh: Gatal pada kulit"
-                            class="w-full rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900/50 px-4 py-3 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors"
+                            class="w-full rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900/50 px-4 py-3 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-colors"
                             :class="{ 'border-rose-300 focus:border-rose-500 focus:ring-rose-500 dark:border-rose-500': form.errors.nama_gejala }"
                         />
                         <p v-if="form.errors.nama_gejala" class="mt-2 text-xs font-semibold text-rose-600 dark:text-rose-400">
@@ -97,7 +97,7 @@ const submit = () => {
                         <select
                             id="jenis"
                             v-model="form.jenis"
-                            class="w-full rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900/50 px-4 py-3 text-sm text-slate-900 dark:text-white focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors"
+                            class="w-full rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900/50 px-4 py-3 text-sm text-slate-900 dark:text-white focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-colors"
                             :class="{ 'border-rose-300 focus:border-rose-500 focus:ring-rose-500 dark:border-rose-500': form.errors.jenis }"
                         >
                             <option value="benefit" class="bg-white dark:bg-slate-800 text-slate-900 dark:text-white">Benefit (Semakin tinggi semakin baik)</option>
@@ -120,7 +120,7 @@ const submit = () => {
                             min="1"
                             max="100"
                             placeholder="Contoh: 10"
-                            class="w-full rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900/50 px-4 py-3 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors"
+                            class="w-full rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900/50 px-4 py-3 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-colors"
                             :class="{ 'border-rose-300 focus:border-rose-500 focus:ring-rose-500 dark:border-rose-500': form.errors.bobot }"
                         />
                         <p v-if="form.errors.bobot" class="mt-2 text-xs font-semibold text-rose-600 dark:text-rose-400">
@@ -139,7 +139,7 @@ const submit = () => {
                         <button
                             type="submit"
                             :disabled="form.processing"
-                            class="flex justify-center rounded-xl bg-indigo-600 px-6 py-3 text-sm font-bold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:opacity-50 transition-colors"
+                            class="flex justify-center rounded-xl bg-emerald-600 px-6 py-3 text-sm font-bold text-white shadow-sm hover:bg-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600 disabled:opacity-50 transition-colors"
                         >
                             {{ form.processing ? 'Menyimpan...' : 'Simpan Gejala' }}
                         </button>

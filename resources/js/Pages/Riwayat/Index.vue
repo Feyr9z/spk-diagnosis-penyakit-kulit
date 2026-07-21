@@ -47,7 +47,7 @@ const jenisKelaminLabel = (jk) => jk === 'L' ? 'Laki-laki' : 'Perempuan';
     <AuthenticatedLayout>
         <template #header>
             <h2 class="text-2xl font-bold leading-tight text-slate-900 dark:text-white flex items-center gap-2">
-                <History class="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
+                <History class="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
                 Riwayat Diagnosis
             </h2>
         </template>
@@ -56,7 +56,7 @@ const jenisKelaminLabel = (jk) => jk === 'L' ? 'Laki-laki' : 'Perempuan';
             <div class="flex items-center justify-end">
                 <Link
                     :href="route('diagnosis.create')"
-                    class="flex items-center justify-center gap-2 rounded-xl bg-indigo-600 px-4 py-2.5 text-sm font-bold text-white shadow-sm hover:bg-indigo-500 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    class="flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-4 py-2.5 text-sm font-bold text-white shadow-sm hover:bg-emerald-500 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600"
                 >
                     <Activity class="w-4 h-4" /> Diagnosis Baru
                 </Link>
@@ -88,7 +88,7 @@ const jenisKelaminLabel = (jk) => jk === 'L' ? 'Laki-laki' : 'Perempuan';
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 text-sm">
-                                    <span class="font-extrabold text-indigo-600 dark:text-indigo-400">{{ item.penyakit?.kode_penyakit ?? '-' }}</span>
+                                    <span class="font-extrabold text-emerald-600 dark:text-emerald-400">{{ item.penyakit?.kode_penyakit ?? '-' }}</span>
                                     <div class="text-slate-700 dark:text-slate-300 font-medium">{{ item.penyakit?.nama_penyakit ?? 'Penyakit Dihapus' }}</div>
                                 </td>
                                 <td class="whitespace-nowrap px-6 py-4 text-sm font-extrabold text-amber-600 dark:text-amber-400">
@@ -110,7 +110,7 @@ const jenisKelaminLabel = (jk) => jk === 'L' ? 'Laki-laki' : 'Perempuan';
                                     </template>
                                     <template v-else>
                                         <div class="flex items-center justify-center gap-4">
-                                            <Link :href="route('riwayat.show', item.id)" class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 transition-colors" title="Lihat Detail">
+                                            <Link :href="route('riwayat.show', item.id)" class="text-emerald-600 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-300 transition-colors" title="Lihat Detail">
                                                 <Eye class="w-4 h-4" />
                                             </Link>
                                             <button @click="confirmDelete(item.id)" class="text-rose-600 dark:text-rose-500 hover:text-rose-800 dark:hover:text-rose-400 transition-colors" title="Hapus Riwayat">

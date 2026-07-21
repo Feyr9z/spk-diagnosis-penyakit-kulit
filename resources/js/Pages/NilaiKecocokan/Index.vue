@@ -128,7 +128,7 @@ const saveMatrix = () => {
                             <tr v-for="p in penyakit" :key="p.id" class="hover:bg-slate-50 dark:hover:bg-slate-700/20 transition-colors group">
                                 <td class="whitespace-nowrap px-6 py-4 text-sm font-bold text-slate-900 dark:text-white bg-slate-50/90 dark:bg-slate-800/90 group-hover:bg-slate-100/90 dark:group-hover:bg-slate-700/90 sticky left-0 z-10 border-r border-slate-200/80 dark:border-slate-700/50 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.05)] dark:shadow-[2px_0_5px_-2px_rgba(0,0,0,0.3)] transition-colors">
                                     <div class="flex flex-col">
-                                        <span class="text-cyan-600 dark:text-cyan-400 font-extrabold">{{ p.kode_penyakit }}</span>
+                                        <span class="text-emerald-600 dark:text-emerald-400 font-extrabold">{{ p.kode_penyakit }}</span>
                                         <span class="text-xs text-slate-600 dark:text-slate-400 font-medium truncate max-w-[180px]" :title="p.nama_penyakit">{{ p.nama_penyakit }}</span>
                                     </div>
                                 </td>

@@ -36,7 +36,7 @@ const hapus = (id) => {
     <AuthenticatedLayout>
         <template #header>
             <h2 class="text-2xl font-bold leading-tight text-slate-900 dark:text-white flex items-center gap-2">
-                <Database class="w-6 h-6 text-cyan-600 dark:text-cyan-400" />
+                <Database class="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
                 Data Alternatif (Penyakit)
             </h2>
         </template>
@@ -45,7 +45,7 @@ const hapus = (id) => {
             <div class="flex items-center justify-end">
                 <Link
                     :href="route('penyakit.create')"
-                    class="flex items-center justify-center gap-2 rounded-xl bg-cyan-600 px-4 py-2.5 text-sm font-bold text-white shadow-sm hover:bg-cyan-500 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-600"
+                    class="flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-4 py-2.5 text-sm font-bold text-white shadow-sm hover:bg-emerald-500 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600"
                 >
                     <Plus class="w-4 h-4" /> Tambah Alternatif
                 </Link>
@@ -88,7 +88,7 @@ const hapus = (id) => {
 
                                     <template v-else>
                                         <div class="flex items-center justify-center gap-4">
-                                            <Link :href="route('penyakit.edit', item.id)" class="text-cyan-600 dark:text-cyan-400 hover:text-cyan-800 dark:hover:text-cyan-300 transition-colors" title="Edit">
+                                            <Link :href="route('penyakit.edit', item.id)" class="text-emerald-600 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-300 transition-colors" title="Edit">
                                                 <Edit class="w-4 h-4" />
                                             </Link>
                                             <button @click="confirmDelete(item.id)" class="text-rose-600 dark:text-rose-500 hover:text-rose-800 dark:hover:text-rose-400 transition-colors" title="Hapus">

@@ -31,7 +31,7 @@ const submit = () => {
                     <ArrowLeft class="w-5 h-5" />
                 </Link>
                 <h2 class="text-2xl font-bold leading-tight text-slate-900 dark:text-white flex items-center gap-2">
-                    <Users class="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
+                    <Users class="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
                     Tambah User
                 </h2>
             </div>
@@ -73,7 +73,7 @@ const submit = () => {
                             <label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-1.5">Role Akses</label>
                             <select
                                 v-model="form.role"
-                                class="w-full rounded-xl border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-4 py-2.5 text-sm font-medium text-slate-900 dark:text-slate-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 transition-colors"
+                                class="w-full rounded-xl border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-4 py-2.5 text-sm font-medium text-slate-900 dark:text-slate-100 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 transition-colors"
                                 required
                             >
                                 <option value="admin">Admin</option>
@@ -112,7 +112,7 @@ const submit = () => {
                         <button
                             type="submit"
                             :disabled="form.processing"
-                            class="inline-flex items-center gap-2 rounded-xl bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                            class="inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                             <Save class="w-4 h-4" />
                             <span>{{ form.processing ? 'Menyimpan...' : 'Simpan User' }}</span>
