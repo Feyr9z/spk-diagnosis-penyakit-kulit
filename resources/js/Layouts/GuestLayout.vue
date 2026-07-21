@@ -18,7 +18,7 @@ import { Activity } from 'lucide-vue-next';
                 <div class="p-4 bg-slate-800/50 rounded-2xl border border-slate-700/50 backdrop-blur-sm mb-8 shadow-2xl">
                     <Activity class="w-16 h-16 text-indigo-400" />
                 </div>
-                <h1 class="text-5xl font-extrabold text-white tracking-tight mb-6">OptiChoice SPK</h1>
+                <h1 class="text-5xl font-extrabold text-white tracking-tight mb-6">Ermust Clinic</h1>
                 <p class="text-xl text-slate-400 max-w-lg leading-relaxed">
                     Intelligent Decision Support System powered by Simple Additive Weighting (SAW) algorithm.
                 </p>
@@ -37,7 +37,7 @@ import { Activity } from 'lucide-vue-next';
                     <div class="p-3 bg-slate-800/80 rounded-xl border border-slate-700/50 mb-4">
                         <Activity class="w-10 h-10 text-indigo-400" />
                     </div>
-                    <h2 class="text-2xl font-bold text-white tracking-tight">OptiChoice SPK</h2>
+                    <h2 class="text-2xl font-bold text-white tracking-tight">Ermust Clinic</h2>
                 </div>
                 
                 <slot />

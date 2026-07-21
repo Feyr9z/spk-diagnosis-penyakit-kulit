@@ -14,12 +14,7 @@ use App\Http\Controllers\RiwayatController;
 use App\Http\Controllers\DashboardController;
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        // 'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+    return redirect()->route('login');
 });
 
 
@@ -32,7 +27,6 @@ Route::middleware(['auth', 'role:super_admin,admin'])->group(function () {
 
     Route::put('/password', [PasswordController::class, 'update'])->name('password.update');
 
-    Route::resource('users', UserController::class);
     Route::resource('gejala', GejalaController::class)->except(['show']);
     Route::resource('penyakit', PenyakitController::class)->except(['show']);
     Route::post('nilai-kecocokan/matrix', [NilaiKecocokanController::class, 'updateMatrix'])->name('nilai-kecocokan.matrix');
@@ -46,6 +40,10 @@ Route::middleware(['auth', 'role:super_admin,admin'])->group(function () {
     Route::get('/riwayat', [RiwayatController::class, 'index'])->name('riwayat.index');
     Route::get('/riwayat/{diagnosis}', [RiwayatController::class, 'show'])->name('riwayat.show');
     Route::delete('/riwayat/{diagnosis}', [RiwayatController::class, 'destroy'])->name('riwayat.destroy');
+});
+
+Route::middleware(['auth', 'role:super_admin'])->group(function () {
+    Route::resource('users', UserController::class);
 });
 
 require __DIR__.'/auth.php';

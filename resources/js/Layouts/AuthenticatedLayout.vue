@@ -3,7 +3,7 @@ import { ref, onMounted } from 'vue';
 import { Link, router } from '@inertiajs/vue3';
 import {
     Activity, LayoutDashboard, Database, ListTodo, ClipboardList,
-    History, Menu, X, User, LogOut, Settings, Sun, Moon
+    History, Menu, X, User, LogOut, Settings, Sun, Moon, Users
 } from 'lucide-vue-next';
 import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
@@ -26,14 +26,27 @@ const toggleTheme = () => {
     }
 };
 
-const navigation = [
-    { name: 'Dashboard', href: route('dashboard'), icon: LayoutDashboard, current: route().current('dashboard') },
-    { name: 'Kriteria (Gejala)', href: route('gejala.index'), icon: ListTodo, current: route().current('gejala.*') },
-    { name: 'Alternatif (Penyakit)', href: route('penyakit.index'), icon: Database, current: route().current('penyakit.*') },
-    { name: 'Nilai Kecocokan', href: route('nilai-kecocokan.index'), icon: ClipboardList, current: route().current('nilai-kecocokan.*') },
-    { name: 'Hitung SAW (Diagnosis)', href: route('diagnosis.create'), icon: Activity, current: route().current('diagnosis.*') },
-    { name: 'Riwayat & Hasil', href: route('riwayat.index'), icon: History, current: route().current('riwayat.*') },
-];
+import { computed } from 'vue';
+import { usePage } from '@inertiajs/vue3';
+
+const page = usePage();
+
+const navigation = computed(() => {
+    const nav = [
+        { name: 'Dashboard', href: route('dashboard'), icon: LayoutDashboard, current: route().current('dashboard') },
+        { name: 'Kriteria (Gejala)', href: route('gejala.index'), icon: ListTodo, current: route().current('gejala.*') },
+        { name: 'Alternatif (Penyakit)', href: route('penyakit.index'), icon: Database, current: route().current('penyakit.*') },
+        { name: 'Nilai Kecocokan', href: route('nilai-kecocokan.index'), icon: ClipboardList, current: route().current('nilai-kecocokan.*') },
+        { name: 'Hitung SAW (Diagnosis)', href: route('diagnosis.create'), icon: Activity, current: route().current('diagnosis.*') },
+        { name: 'Riwayat & Hasil', href: route('riwayat.index'), icon: History, current: route().current('riwayat.*') },
+    ];
+
+    if (page.props.auth.user.role === 'super_admin') {
+        nav.push({ name: 'Manajemen User', href: route('users.index'), icon: Users, current: route().current('users.*') });
+    }
+
+    return nav;
+});
 </script>
 
 <template>
@@ -47,7 +60,7 @@ const navigation = [
             <div class="flex items-center justify-center h-20 border-b border-slate-200/60 dark:border-slate-700/50 px-6 shrink-0">
                 <Link :href="route('dashboard')" class="flex items-center gap-3">
                     <Activity class="w-8 h-8 text-indigo-600 dark:text-indigo-500" />
-                    <span class="text-xl font-bold text-slate-900 dark:text-white tracking-tight">OptiChoice SPK</span>
+                    <span class="text-xl font-bold text-slate-900 dark:text-white tracking-tight">Ermust Clinic</span>
                 </Link>
             </div>
 

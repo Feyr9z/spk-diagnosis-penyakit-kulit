@@ -36,11 +36,11 @@ const updatePassword = () => {
 <template>
     <section>
         <header>
-            <h2 class="text-lg font-medium text-slate-200">
+            <h2 class="text-lg font-medium text-slate-900 dark:text-slate-200">
                 Ubah Password
             </h2>
 
-            <p class="mt-1 text-sm text-slate-400">
+            <p class="mt-1 text-sm text-slate-600 dark:text-slate-400">
                 Pastikan akun Anda menggunakan password yang kuat.
             </p>
         </header>
@@ -110,7 +110,7 @@ const updatePassword = () => {
                 >
                     <p
                         v-if="form.recentlySuccessful"
-                        class="text-sm text-slate-400"
+                        class="text-sm text-slate-600 dark:text-slate-400"
                     >
                         Password berhasil diperbarui.
                     </p>
