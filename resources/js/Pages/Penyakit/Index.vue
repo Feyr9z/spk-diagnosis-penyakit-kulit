@@ -82,10 +82,10 @@ const hapus = (id) => {
                                             {{ index + 1 }}
                                         </td>
                                         <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900">
-                                            {{ item.kode }}
+                                            {{ item.kode_penyakit }}
                                         </td>
                                         <td class="px-6 py-4 text-sm text-gray-700">
-                                            {{ item.nama }}
+                                            {{ item.nama_penyakit }}
                                         </td>
                                         <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">
                                             {{ item.deskripsi }}

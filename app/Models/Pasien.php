@@ -5,20 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Penyakit extends Model
+class Pasien extends Model
 {
-    protected $table = 'penyakit';
+    protected $table = 'pasien';
 
     protected $fillable = [
-        'kode_penyakit',
-        'nama_penyakit',
-        'deskripsi',
+        'nama',
+        'jenis_kelamin',
+        'usia',
     ];
-
-    public function nilaiKecocokan(): HasMany
-    {
-        return $this->hasMany(NilaiKecocokan::class);
-    }
 
     public function diagnosis(): HasMany
     {

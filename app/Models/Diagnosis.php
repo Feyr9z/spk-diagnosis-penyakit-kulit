@@ -3,34 +3,33 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
-use App\Models\Penyakit;
-use App\Models\DiagnosisDetail;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Diagnosis extends Model
 {
+    use SoftDeletes;
+
     protected $table = 'diagnosis';
 
     protected $fillable = [
-        'nama_pasien',
-        'usia',
-        'jenis_kelamin',
-        'user_id',
+        'pasien_id',
         'penyakit_id',
-        'nilai_akhir',
+        'nilai_preferensi',
     ];
 
-    public function user()
+    public function pasien(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Pasien::class);
     }
 
-    public function penyakit()
+    public function penyakit(): BelongsTo
     {
         return $this->belongsTo(Penyakit::class);
     }
 
-    public function details()
+    public function details(): HasMany
     {
         return $this->hasMany(DiagnosisDetail::class);
     }

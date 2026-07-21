@@ -14,7 +14,7 @@ class StoreDiagnosisRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nama_pasien'   => ['required', 'string', 'max:100'],
+            'nama'          => ['required', 'string', 'max:100'],
             'usia'          => ['required', 'integer', 'min:1', 'max:255'],
             'jenis_kelamin' => ['required', 'in:L,P'],
             'gejala_ids'    => ['required', 'array', 'min:1'],
@@ -25,8 +25,8 @@ class StoreDiagnosisRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'nama_pasien.required'   => 'Nama pasien wajib diisi.',
-            'nama_pasien.max'        => 'Nama pasien maksimal 100 karakter.',
+            'nama.required'          => 'Nama pasien wajib diisi.',
+            'nama.max'               => 'Nama pasien maksimal 100 karakter.',
             'usia.required'          => 'Usia wajib diisi.',
             'usia.integer'           => 'Usia harus berupa angka.',
             'usia.min'               => 'Usia minimal 1 tahun.',

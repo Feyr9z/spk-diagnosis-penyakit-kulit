@@ -33,12 +33,11 @@ class DiagnosisController extends Controller
 
         $diagnosis = $this->diagnosisService->proses(
             pasienData: [
-                'nama_pasien'   => $validated['nama_pasien'],
+                'nama'          => $validated['nama'],
                 'usia'          => $validated['usia'],
                 'jenis_kelamin' => $validated['jenis_kelamin'],
             ],
             selectedGejalaIds: $validated['gejala_ids'],
-            userId: $request->user()->id,
         );
 
         return redirect()

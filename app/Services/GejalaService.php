@@ -8,7 +8,7 @@ class GejalaService
 {
     public function getAll()
     {
-        return Gejala::orderBy('kode')->get();
+        return Gejala::orderBy('kode_gejala')->get();
     }
 
     public function findById(int $id): ?Gejala

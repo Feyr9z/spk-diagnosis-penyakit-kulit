@@ -10,7 +10,7 @@ defineProps({
 });
 
 const form = useForm({
-    nama_pasien: '',
+    nama: '',
     usia: '',
     jenis_kelamin: '',
     gejala_ids: [],
@@ -54,20 +54,20 @@ const submit = () => {
 
                             <!-- Nama Pasien -->
                             <div>
-                                <label for="nama_pasien" class="block text-sm font-medium text-gray-700">
+                                <label for="nama" class="block text-sm font-medium text-gray-700">
                                     Nama Pasien
                                 </label>
                                 <input
-                                    id="nama_pasien"
-                                    v-model="form.nama_pasien"
+                                    id="nama"
+                                    v-model="form.nama"
                                     type="text"
                                     maxlength="100"
                                     placeholder="Masukkan nama pasien"
                                     class="mt-1 w-full rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                                    :class="{ 'border-red-500': form.errors.nama_pasien }"
+                                    :class="{ 'border-red-500': form.errors.nama }"
                                 />
-                                <p v-if="form.errors.nama_pasien" class="mt-1 text-xs text-red-600">
-                                    {{ form.errors.nama_pasien }}
+                                <p v-if="form.errors.nama" class="mt-1 text-xs text-red-600">
+                                    {{ form.errors.nama }}
                                 </p>
                             </div>
 
@@ -145,10 +145,10 @@ const submit = () => {
                                     class="mt-0.5 h-4 w-4 rounded border-gray-300 text-indigo-600"
                                 />
                                 <span class="text-sm text-gray-700">
-                                    <span class="font-medium text-gray-900">{{ item.kode }}</span>
-                                    — {{ item.nama }}
-                                    <span class="text-xs text-gray-400">(bobot: {{ item.bobot }})</span>
-                                </span>
+                                                <span class="font-medium text-gray-900">{{ item.kode_gejala }}</span>
+                                                — {{ item.nama_gejala }}
+                                                <span class="text-xs text-gray-400">(bobot: {{ item.bobot }})</span>
+                                            </span>
                             </label>
                         </div>
 

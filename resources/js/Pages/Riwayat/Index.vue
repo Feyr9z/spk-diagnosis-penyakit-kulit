@@ -84,17 +84,17 @@ const jenisKelaminLabel = (jk) => jk === 'L' ? 'Laki-laki' : 'Perempuan';
                                             {{ index + 1 }}
                                         </td>
                                         <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900">
-                                            {{ item.nama_pasien }}
+                                            {{ item.pasien.nama }}
                                         </td>
                                         <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-700">
-                                            {{ item.usia }} thn / {{ jenisKelaminLabel(item.jenis_kelamin) }}
+                                            {{ item.pasien.usia }} thn / {{ jenisKelaminLabel(item.pasien.jenis_kelamin) }}
                                         </td>
                                         <td class="px-6 py-4 text-sm text-gray-700">
-                                            <span class="font-medium text-gray-900">{{ item.penyakit.kode }}</span>
-                                            — {{ item.penyakit.nama }}
+                                            <span class="font-medium text-gray-900">{{ item.penyakit.kode_penyakit }}</span>
+                                            — {{ item.penyakit.nama_penyakit }}
                                         </td>
                                         <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-700">
-                                            {{ Number(item.nilai_akhir).toFixed(4) }}
+                                            {{ Number(item.nilai_preferensi).toFixed(4) }}
                                         </td>
                                         <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-700">
                                             {{ tanggal(item.created_at) }}

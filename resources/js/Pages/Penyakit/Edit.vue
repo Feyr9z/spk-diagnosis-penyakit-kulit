@@ -10,10 +10,9 @@ const props = defineProps({
 });
 
 const form = useForm({
-    kode: props.penyakit.kode,
-    nama: props.penyakit.nama,
+    kode_penyakit: props.penyakit.kode_penyakit,
+    nama_penyakit: props.penyakit.nama_penyakit,
     deskripsi: props.penyakit.deskripsi,
-    solusi: props.penyakit.solusi,
 });
 
 const submit = () => {
@@ -42,36 +41,36 @@ const submit = () => {
 
                             <!-- Kode -->
                             <div>
-                                <label for="kode" class="block text-sm font-medium text-gray-700">
+                                <label for="kode_penyakit" class="block text-sm font-medium text-gray-700">
                                     Kode Penyakit
                                 </label>
                                 <input
-                                    id="kode"
-                                    v-model="form.kode"
+                                    id="kode_penyakit"
+                                    v-model="form.kode_penyakit"
                                     type="text"
                                     maxlength="20"
                                     class="mt-1 w-full rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                                    :class="{ 'border-red-500': form.errors.kode }"
+                                    :class="{ 'border-red-500': form.errors.kode_penyakit }"
                                 />
-                                <p v-if="form.errors.kode" class="mt-1 text-xs text-red-600">
-                                    {{ form.errors.kode }}
+                                <p v-if="form.errors.kode_penyakit" class="mt-1 text-xs text-red-600">
+                                    {{ form.errors.kode_penyakit }}
                                 </p>
                             </div>
 
                             <!-- Nama -->
                             <div>
-                                <label for="nama" class="block text-sm font-medium text-gray-700">
+                                <label for="nama_penyakit" class="block text-sm font-medium text-gray-700">
                                     Nama Penyakit
                                 </label>
                                 <input
-                                    id="nama"
-                                    v-model="form.nama"
+                                    id="nama_penyakit"
+                                    v-model="form.nama_penyakit"
                                     type="text"
                                     class="mt-1 w-full rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                                    :class="{ 'border-red-500': form.errors.nama }"
+                                    :class="{ 'border-red-500': form.errors.nama_penyakit }"
                                 />
-                                <p v-if="form.errors.nama" class="mt-1 text-xs text-red-600">
-                                    {{ form.errors.nama }}
+                                <p v-if="form.errors.nama_penyakit" class="mt-1 text-xs text-red-600">
+                                    {{ form.errors.nama_penyakit }}
                                 </p>
                             </div>
 
@@ -92,22 +91,6 @@ const submit = () => {
                                 </p>
                             </div>
 
-                            <!-- Solusi -->
-                            <div>
-                                <label for="solusi" class="block text-sm font-medium text-gray-700">
-                                    Solusi
-                                </label>
-                                <textarea
-                                    id="solusi"
-                                    v-model="form.solusi"
-                                    rows="4"
-                                    class="mt-1 w-full rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                                    :class="{ 'border-red-500': form.errors.solusi }"
-                                ></textarea>
-                                <p v-if="form.errors.solusi" class="mt-1 text-xs text-red-600">
-                                    {{ form.errors.solusi }}
-                                </p>
-                            </div>
 
                             <!-- Actions -->
                             <div class="flex items-center justify-end gap-3 pt-2">

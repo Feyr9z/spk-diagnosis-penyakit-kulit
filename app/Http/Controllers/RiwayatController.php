@@ -11,7 +11,7 @@ class RiwayatController extends Controller
 {
     public function index(): Response
     {
-        $riwayat = Diagnosis::with(['penyakit', 'user'])
+        $riwayat = Diagnosis::with(['pasien', 'penyakit'])
             ->latest()
             ->get();
 
@@ -22,7 +22,7 @@ class RiwayatController extends Controller
 
     public function show(Diagnosis $diagnosis): Response
     {
-        $diagnosis->load(['penyakit', 'details.gejala', 'user']);
+        $diagnosis->load(['pasien', 'penyakit', 'details.gejala']);
 
         return Inertia::render('Riwayat/Show', [
             'diagnosis' => $diagnosis,

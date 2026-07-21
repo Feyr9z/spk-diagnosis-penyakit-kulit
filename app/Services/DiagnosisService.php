@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Models\Diagnosis;
 use App\Models\Gejala;
-use App\Models\Penyakit;
+use App\Models\Pasien;
 use Illuminate\Support\Facades\DB;
 
 class DiagnosisService
@@ -13,43 +13,32 @@ class DiagnosisService
         protected SAWService $sawService
     ) {}
 
-    /**
-     * Ambil semua gejala untuk form diagnosis.
-     */
     public function getAllGejala()
     {
-        return Gejala::orderBy('kode')->get(['id', 'kode', 'nama', 'bobot']);
+        return Gejala::orderBy('kode_gejala')->get(['id', 'kode_gejala', 'nama_gejala', 'bobot']);
     }
 
-    /**
-     * Jalankan proses diagnosis dan simpan hasilnya dalam satu transaksi.
-     *
-     * @param  array  $pasienData  [nama_pasien, usia, jenis_kelamin]
-     * @param  array<int>  $selectedGejalaIds
-     * @param  int  $userId
-     * @return Diagnosis
-     */
-    public function proses(array $pasienData, array $selectedGejalaIds, int $userId): Diagnosis
+    public function proses(array $pasienData, array $selectedGejalaIds): Diagnosis
     {
-        return DB::transaction(function () use ($pasienData, $selectedGejalaIds, $userId) {
-            // Hitung SAW
-            $hasilSAW = $this->sawService->hitung($selectedGejalaIds);
-
-            /** @var Penyakit $penyakitTerpilih */
-            $penyakitTerpilih = $hasilSAW['penyakit'];
-            $nilaiAkhir       = $hasilSAW['nilai_akhir'];
-
-            // Simpan diagnosis
-            $diagnosis = Diagnosis::create([
-                'nama_pasien'  => $pasienData['nama_pasien'],
-                'usia'         => $pasienData['usia'],
+        return DB::transaction(function () use ($pasienData, $selectedGejalaIds) {
+            // 1. Simpan Pasien
+            $pasien = Pasien::create([
+                'nama'          => $pasienData['nama'],
                 'jenis_kelamin' => $pasienData['jenis_kelamin'],
-                'user_id'      => $userId,
-                'penyakit_id'  => $penyakitTerpilih->id,
-                'nilai_akhir'  => $nilaiAkhir,
+                'usia'          => $pasienData['usia'],
             ]);
 
-            // Simpan detail diagnosis (gejala yang dipilih)
+            // 2. Hitung SAW
+            $hasilSAW = $this->sawService->hitung($selectedGejalaIds);
+
+            // 3. Simpan Diagnosis
+            $diagnosis = Diagnosis::create([
+                'pasien_id'        => $pasien->id,
+                'penyakit_id'      => $hasilSAW['penyakit']->id,
+                'nilai_preferensi' => $hasilSAW['nilai_preferensi'],
+            ]);
+
+            // 4. Simpan Detail Diagnosis
             $detailData = array_map(
                 fn ($gejalaId) => [
                     'diagnosis_id' => $diagnosis->id,
@@ -62,26 +51,13 @@ class DiagnosisService
 
             $diagnosis->details()->insert($detailData);
 
-            return $diagnosis->load(['penyakit', 'details.gejala']);
+            return $diagnosis->load(['pasien', 'penyakit', 'details.gejala']);
         });
     }
 
-    /**
-     * Ambil hasil SAW untuk ditampilkan tanpa menyimpan (preview).
-     *
-     * @param  array<int>  $selectedGejalaIds
-     */
-    public function preview(array $selectedGejalaIds): array
-    {
-        return $this->sawService->hitung($selectedGejalaIds);
-    }
-
-    /**
-     * Ambil data diagnosis beserta relasi untuk halaman hasil.
-     */
     public function findWithRelations(int $diagnosisId): ?Diagnosis
     {
-        return Diagnosis::with(['penyakit', 'details.gejala', 'user'])
+        return Diagnosis::with(['pasien', 'penyakit', 'details.gejala'])
             ->find($diagnosisId);
     }
 }

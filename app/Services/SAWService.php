@@ -27,9 +27,9 @@ class SAWService
         $hasilTertinggi = $ranking[0];
 
         return [
-            'penyakit'   => $hasilTertinggi['penyakit'],
-            'nilai_akhir' => $hasilTertinggi['nilai_preferensi'],
-            'ranking'    => $ranking,
+            'penyakit'         => $hasilTertinggi['penyakit'],
+            'nilai_preferensi' => $hasilTertinggi['nilai_preferensi'],
+            'ranking'          => $ranking,
         ];
     }
 
@@ -40,7 +40,7 @@ class SAWService
     {
         return Gejala::whereIn('id', $selectedGejalaIds)
             ->orderBy('id')
-            ->get();
+            ->get(['id', 'kode_gejala', 'nama_gejala', 'bobot']);
     }
 
     /**

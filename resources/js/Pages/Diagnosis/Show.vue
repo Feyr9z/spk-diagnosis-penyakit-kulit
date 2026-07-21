@@ -39,36 +39,24 @@ const tanggal = (dateStr) => {
                 <div class="bg-indigo-600 text-white shadow-sm sm:rounded-lg">
                     <div class="p-6">
                         <p class="text-sm text-indigo-200 mb-1">Hasil Diagnosis</p>
-                        <h3 class="text-2xl font-bold">{{ diagnosis.penyakit.nama }}</h3>
+                        <h3 class="text-2xl font-bold">{{ diagnosis.penyakit.nama_penyakit }}</h3>
                         <p class="mt-1 text-sm text-indigo-200">
-                            Kode: {{ diagnosis.penyakit.kode }}
+                            Kode: {{ diagnosis.penyakit.kode_penyakit }}
                             &nbsp;·&nbsp;
-                            Nilai Akhir: {{ Number(diagnosis.nilai_akhir).toFixed(4) }}
+                            Nilai Preferensi: {{ Number(diagnosis.nilai_preferensi).toFixed(4) }}
                         </p>
                     </div>
                 </div>
 
-                <!-- Deskripsi & Solusi -->
-                <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
-                    <div class="bg-white shadow-sm sm:rounded-lg">
-                        <div class="p-6">
-                            <h4 class="mb-2 text-sm font-semibold text-gray-600 uppercase tracking-wider">
-                                Deskripsi Penyakit
-                            </h4>
-                            <p class="text-sm text-gray-700 leading-relaxed">
-                                {{ diagnosis.penyakit.deskripsi }}
-                            </p>
-                        </div>
-                    </div>
-                    <div class="bg-white shadow-sm sm:rounded-lg">
-                        <div class="p-6">
-                            <h4 class="mb-2 text-sm font-semibold text-gray-600 uppercase tracking-wider">
-                                Saran Penanganan
-                            </h4>
-                            <p class="text-sm text-gray-700 leading-relaxed">
-                                {{ diagnosis.penyakit.solusi }}
-                            </p>
-                        </div>
+                <!-- Deskripsi -->
+                <div class="bg-white shadow-sm sm:rounded-lg">
+                    <div class="p-6">
+                        <h4 class="mb-2 text-sm font-semibold text-gray-600 uppercase tracking-wider">
+                            Deskripsi Penyakit
+                        </h4>
+                        <p class="text-sm text-gray-700 leading-relaxed">
+                            {{ diagnosis.penyakit.deskripsi }}
+                        </p>
                     </div>
                 </div>
 
@@ -81,15 +69,15 @@ const tanggal = (dateStr) => {
                         <dl class="grid grid-cols-2 gap-4 sm:grid-cols-4">
                             <div>
                                 <dt class="text-xs text-gray-500">Nama</dt>
-                                <dd class="mt-1 text-sm font-medium text-gray-900">{{ diagnosis.nama_pasien }}</dd>
+                                <dd class="mt-1 text-sm font-medium text-gray-900">{{ diagnosis.pasien.nama }}</dd>
                             </div>
                             <div>
                                 <dt class="text-xs text-gray-500">Usia</dt>
-                                <dd class="mt-1 text-sm font-medium text-gray-900">{{ diagnosis.usia }} tahun</dd>
+                                <dd class="mt-1 text-sm font-medium text-gray-900">{{ diagnosis.pasien.usia }} tahun</dd>
                             </div>
                             <div>
                                 <dt class="text-xs text-gray-500">Jenis Kelamin</dt>
-                                <dd class="mt-1 text-sm font-medium text-gray-900">{{ jenisKelaminLabel(diagnosis.jenis_kelamin) }}</dd>
+                                <dd class="mt-1 text-sm font-medium text-gray-900">{{ jenisKelaminLabel(diagnosis.pasien.jenis_kelamin) }}</dd>
                             </div>
                             <div>
                                 <dt class="text-xs text-gray-500">Tanggal Diagnosis</dt>
@@ -111,7 +99,7 @@ const tanggal = (dateStr) => {
                                 :key="detail.id"
                                 class="inline-flex items-center rounded-full bg-indigo-100 px-3 py-1 text-xs font-medium text-indigo-800"
                             >
-                                {{ detail.gejala.kode }} — {{ detail.gejala.nama }}
+                                {{ detail.gejala.kode_gejala }} — {{ detail.gejala.nama_gejala }}
                             </span>
                         </div>
                     </div>

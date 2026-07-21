@@ -18,7 +18,7 @@ class DashboardController extends Controller
         $totalPenyakit  = Penyakit::count();
         $totalUser      = User::count();
 
-        $diagnosisTerbaru = Diagnosis::with(['penyakit'])
+        $diagnosisTerbaru = Diagnosis::with(['pasien', 'penyakit'])
             ->latest()
             ->limit(5)
             ->get();

@@ -14,8 +14,8 @@ class StoreGejalaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'kode'  => ['required', 'string', 'max:20', 'unique:gejala,kode'],
-            'nama'  => ['required', 'string', 'max:255'],
+            'kode_gejala'  => ['required', 'string', 'max:20', 'unique:gejala,kode_gejala'],
+            'nama_gejala'  => ['required', 'string', 'max:255'],
             'bobot' => ['required', 'integer', 'min:1', 'max:255'],
         ];
     }
@@ -23,10 +23,10 @@ class StoreGejalaRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'kode.required'  => 'Kode gejala wajib diisi.',
-            'kode.unique'    => 'Kode gejala sudah digunakan.',
-            'kode.max'       => 'Kode gejala maksimal 20 karakter.',
-            'nama.required'  => 'Nama gejala wajib diisi.',
+            'kode_gejala.required'  => 'Kode gejala wajib diisi.',
+            'kode_gejala.unique'    => 'Kode gejala sudah digunakan.',
+            'kode_gejala.max'       => 'Kode gejala maksimal 20 karakter.',
+            'nama_gejala.required'  => 'Nama gejala wajib diisi.',
             'bobot.required' => 'Bobot wajib diisi.',
             'bobot.integer'  => 'Bobot harus berupa angka.',
             'bobot.min'      => 'Bobot minimal 1.',

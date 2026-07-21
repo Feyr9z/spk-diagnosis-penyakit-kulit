@@ -3,8 +3,8 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 
 const form = useForm({
-    kode: '',
-    nama: '',
+    kode_gejala: '',
+    nama_gejala: '',
     bobot: '',
 });
 
@@ -35,38 +35,38 @@ const submit = () => {
 
                             <!-- Kode -->
                             <div>
-                                <label for="kode" class="block text-sm font-medium text-gray-700">
+                                <label for="kode_gejala" class="block text-sm font-medium text-gray-700">
                                     Kode Gejala
                                 </label>
                                 <input
-                                    id="kode"
-                                    v-model="form.kode"
+                                    id="kode_gejala"
+                                    v-model="form.kode_gejala"
                                     type="text"
                                     maxlength="20"
                                     placeholder="Contoh: G01"
                                     class="mt-1 w-full rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                                    :class="{ 'border-red-500': form.errors.kode }"
+                                    :class="{ 'border-red-500': form.errors.kode_gejala }"
                                 />
-                                <p v-if="form.errors.kode" class="mt-1 text-xs text-red-600">
-                                    {{ form.errors.kode }}
+                                <p v-if="form.errors.kode_gejala" class="mt-1 text-xs text-red-600">
+                                    {{ form.errors.kode_gejala }}
                                 </p>
                             </div>
 
                             <!-- Nama -->
                             <div>
-                                <label for="nama" class="block text-sm font-medium text-gray-700">
+                                <label for="nama_gejala" class="block text-sm font-medium text-gray-700">
                                     Nama Gejala
                                 </label>
                                 <input
-                                    id="nama"
-                                    v-model="form.nama"
+                                    id="nama_gejala"
+                                    v-model="form.nama_gejala"
                                     type="text"
                                     placeholder="Contoh: Gatal pada kulit"
                                     class="mt-1 w-full rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                                    :class="{ 'border-red-500': form.errors.nama }"
+                                    :class="{ 'border-red-500': form.errors.nama_gejala }"
                                 />
-                                <p v-if="form.errors.nama" class="mt-1 text-xs text-red-600">
-                                    {{ form.errors.nama }}
+                                <p v-if="form.errors.nama_gejala" class="mt-1 text-xs text-red-600">
+                                    {{ form.errors.nama_gejala }}
                                 </p>
                             </div>
 

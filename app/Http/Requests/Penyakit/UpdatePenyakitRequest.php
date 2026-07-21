@@ -15,22 +15,20 @@ class UpdatePenyakitRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'kode'     => ['required', 'string', 'max:20', Rule::unique('penyakit', 'kode')->ignore($this->route('penyakit'))],
-            'nama'     => ['required', 'string', 'max:255'],
+            'kode_penyakit'     => ['required', 'string', 'max:20', Rule::unique('penyakit', 'kode_penyakit')->ignore($this->route('penyakit'))],
+            'nama_penyakit'     => ['required', 'string', 'max:255'],
             'deskripsi' => ['required', 'string'],
-            'solusi'   => ['required', 'string'],
         ];
     }
 
     public function messages(): array
     {
         return [
-            'kode.required'      => 'Kode penyakit wajib diisi.',
-            'kode.unique'        => 'Kode penyakit sudah digunakan.',
-            'kode.max'           => 'Kode penyakit maksimal 20 karakter.',
-            'nama.required'      => 'Nama penyakit wajib diisi.',
+            'kode_penyakit.required'      => 'Kode penyakit wajib diisi.',
+            'kode_penyakit.unique'        => 'Kode penyakit sudah digunakan.',
+            'kode_penyakit.max'           => 'Kode penyakit maksimal 20 karakter.',
+            'nama_penyakit.required'      => 'Nama penyakit wajib diisi.',
             'deskripsi.required' => 'Deskripsi wajib diisi.',
-            'solusi.required'    => 'Solusi wajib diisi.',
         ];
     }
 }
