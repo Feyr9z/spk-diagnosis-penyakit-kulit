@@ -16,11 +16,11 @@ const form = useForm({
 <template>
     <section>
         <header>
-            <h2 class="text-lg font-medium text-gray-900">
+            <h2 class="text-lg font-medium text-slate-200">
                 Informasi Profil
             </h2>
 
-            <p class="mt-1 text-sm text-gray-600">
+            <p class="mt-1 text-sm text-slate-400">
                 Perbarui nama dan username akun Anda.
             </p>
         </header>
@@ -71,7 +71,7 @@ const form = useForm({
                 >
                     <p
                         v-if="form.recentlySuccessful"
-                        class="text-sm text-gray-600"
+                        class="text-sm text-slate-400"
                     >
                         Profil berhasil diperbarui.
                     </p>
