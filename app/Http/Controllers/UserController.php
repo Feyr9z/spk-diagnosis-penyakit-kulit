@@ -96,6 +96,10 @@ class UserController extends Controller
             return redirect()->route('users.index')->with('error', 'User tidak ditemukan.');
         }
 
+        if ($user->id === auth()->id()) {
+            return redirect()->route('users.index')->with('error', 'Anda tidak dapat menghapus akun Anda sendiri.');
+        }
+
         $this->userService->delete($user);
 
         return redirect()
