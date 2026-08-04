@@ -12,7 +12,7 @@ const props = defineProps({
     },
     contentClasses: {
         type: String,
-        default: 'py-1 bg-slate-800',
+        default: 'py-1 bg-white dark:bg-slate-800',
     },
 });
 
@@ -73,7 +73,7 @@ const open = ref(false);
                 @click="open = false"
             >
                 <div
-                    class="rounded-md border border-slate-700/50 shadow-2xl"
+                    class="rounded-md border border-slate-200 dark:border-slate-700/50 shadow-2xl"
                     :class="contentClasses"
                 >
                     <slot name="content" />
