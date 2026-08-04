@@ -2,7 +2,7 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link, router } from '@inertiajs/vue3';
 import { ref } from 'vue';
-import { History, Eye, Trash2, Calendar, User, Activity } from 'lucide-vue-next';
+import { History, Eye, Trash2, Calendar, User, Activity, AlertTriangle } from 'lucide-vue-next';
 
 defineProps({
     riwayat: {
@@ -13,8 +13,8 @@ defineProps({
 
 const confirmingDelete = ref(null);
 
-const confirmDelete = (id) => {
-    confirmingDelete.value = id;
+const confirmDelete = (item) => {
+    confirmingDelete.value = item;
 };
 
 const cancelDelete = () => {
@@ -101,23 +101,22 @@ const jenisKelaminLabel = (jk) => jk === 'L' ? 'Laki-laki' : 'Perempuan';
                                 </td>
 
                                 <td class="whitespace-nowrap px-6 py-4 text-center text-sm font-medium">
-                                    <template v-if="confirmingDelete === item.id">
-                                        <div class="flex items-center justify-center gap-3">
-                                            <span class="text-slate-500 dark:text-slate-400 text-xs font-semibold">Yakin?</span>
-                                            <button @click="hapus(item.id)" class="text-rose-600 dark:text-rose-500 hover:text-rose-700 dark:hover:text-rose-400 text-xs font-bold transition-colors">Ya</button>
-                                            <button @click="cancelDelete" class="text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-300 text-xs font-bold transition-colors">Batal</button>
-                                        </div>
-                                    </template>
-                                    <template v-else>
-                                        <div class="flex items-center justify-center gap-4">
-                                            <Link :href="route('riwayat.show', item.id)" class="text-emerald-600 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-300 transition-colors" title="Lihat Detail">
-                                                <Eye class="w-4 h-4" />
-                                            </Link>
-                                            <button @click="confirmDelete(item.id)" class="text-rose-600 dark:text-rose-500 hover:text-rose-800 dark:hover:text-rose-400 transition-colors" title="Hapus Riwayat">
-                                                <Trash2 class="w-4 h-4" />
-                                            </button>
-                                        </div>
-                                    </template>
+                                    <div class="flex items-center justify-center gap-2">
+                                        <Link
+                                            :href="route('riwayat.show', item.id)"
+                                            class="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-700/50 px-3 py-1.5 text-xs font-bold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 hover:border-slate-300 dark:hover:border-slate-500 transition-all"
+                                        >
+                                            <Eye class="w-3.5 h-3.5" />
+                                            Detail
+                                        </Link>
+                                        <button
+                                            @click="confirmDelete(item)"
+                                            class="inline-flex items-center gap-1.5 rounded-lg border border-rose-200 dark:border-rose-500/30 bg-rose-50 dark:bg-rose-500/10 px-3 py-1.5 text-xs font-bold text-rose-600 dark:text-rose-400 hover:bg-rose-100 dark:hover:bg-rose-500/20 hover:border-rose-300 dark:hover:border-rose-500/50 transition-all"
+                                        >
+                                            <Trash2 class="w-3.5 h-3.5" />
+                                            Hapus
+                                        </button>
+                                    </div>
                                 </td>
                             </tr>
 
@@ -134,5 +133,47 @@ const jenisKelaminLabel = (jk) => jk === 'L' ? 'Laki-laki' : 'Perempuan';
                 </div>
             </div>
         </div>
+
+        <!-- Delete Confirmation Modal -->
+        <Transition
+            enter-active-class="transition duration-200 ease-out"
+            enter-from-class="opacity-0"
+            enter-to-class="opacity-100"
+            leave-active-class="transition duration-150 ease-in"
+            leave-from-class="opacity-100"
+            leave-to-class="opacity-0"
+        >
+            <div v-if="confirmingDelete" class="fixed inset-0 z-50 flex items-center justify-center p-4" @click.self="cancelDelete">
+                <div class="absolute inset-0 bg-slate-900/50 dark:bg-slate-900/70 backdrop-blur-sm"></div>
+                <div class="relative w-full max-w-md rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-2xl p-6 space-y-5">
+                    <div class="flex items-start gap-4">
+                        <div class="shrink-0 w-11 h-11 rounded-full bg-rose-100 dark:bg-rose-500/20 flex items-center justify-center">
+                            <AlertTriangle class="w-5 h-5 text-rose-600 dark:text-rose-400" />
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-slate-900 dark:text-white">Hapus Riwayat Diagnosis</h3>
+                            <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Tindakan ini tidak dapat dibatalkan. Riwayat berikut akan dihapus permanen:</p>
+                        </div>
+                    </div>
+                    <div class="rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/50 p-4 space-y-1">
+                        <p class="font-bold text-slate-900 dark:text-white">{{ confirmingDelete.pasien?.nama ?? 'Pasien Dihapus' }}</p>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">
+                            {{ confirmingDelete.pasien ? `${confirmingDelete.pasien.usia} thn · ${confirmingDelete.pasien.jenis_kelamin === 'L' ? 'Laki-laki' : 'Perempuan'}` : '—' }}
+                        </p>
+                        <p class="text-xs font-semibold text-emerald-600 dark:text-emerald-400 pt-1">
+                            Diagnosis: {{ confirmingDelete.penyakit?.nama_penyakit ?? 'Penyakit Dihapus' }}
+                        </p>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 font-mono">{{ tanggal(confirmingDelete.created_at) }}</p>
+                    </div>
+                    <div class="flex items-center justify-end gap-3">
+                        <button @click="cancelDelete" class="rounded-xl border border-slate-300 dark:border-slate-600 bg-transparent px-5 py-2.5 text-sm font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">Batal</button>
+                        <button @click="hapus(confirmingDelete.id)" class="inline-flex items-center gap-2 rounded-xl bg-rose-600 px-5 py-2.5 text-sm font-bold text-white shadow-sm hover:bg-rose-700 transition-colors">
+                            <Trash2 class="w-4 h-4" /> Ya, Hapus
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </Transition>
+
     </AuthenticatedLayout>
 </template>
