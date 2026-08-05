@@ -48,7 +48,7 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction
 RUN npm install && npm run build && rm -rf node_modules
 
 # Set correct permissions
-RUN chown -R $USER:$GROUP storage bootstrap/cache
+RUN chown -R $USER:$GROUP $WORKDIR
 
 USER $USER
 
