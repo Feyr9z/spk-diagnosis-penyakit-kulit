@@ -1,59 +1,113 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# SPK Diagnosis Penyakit Kulit
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Aplikasi web untuk membantu diagnosis penyakit kulit menggunakan metode **Simple Additive Weighting (SAW)**.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Persyaratan Sebelum Memulai
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Sebelum menjalankan aplikasi ini, kamu hanya perlu menginstall **2 software** berikut:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 1. Git
+Git digunakan untuk mengunduh kode aplikasi dari internet.
 
-## Learning Laravel
+- **Windows / macOS**: Download di [git-scm.com](https://git-scm.com/downloads) → Install seperti software biasa.
+- **Linux**: Buka Terminal, ketik perintah berikut:
+  ```bash
+  sudo apt install git      # Ubuntu/Debian
+  sudo dnf install git      # Fedora
+  ```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+### 2. Docker Desktop
+Docker adalah software yang menjalankan aplikasi ini secara otomatis tanpa perlu install PHP, MySQL, atau software lainnya secara manual.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **Windows**: Download di [docs.docker.com/desktop/windows](https://docs.docker.com/desktop/windows/install/)
+  > Saat install, pilih opsi **"Use WSL 2"** jika diminta.
+- **macOS**: Download di [docs.docker.com/desktop/mac](https://docs.docker.com/desktop/mac/install/)
+- **Linux**: Download di [docs.docker.com/desktop/linux](https://docs.docker.com/desktop/linux/install/)
 
-## Laravel Sponsors
+Setelah Docker Desktop terinstall, **pastikan Docker Desktop sudah dibuka dan berjalan** sebelum melanjutkan ke langkah berikutnya.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+---
 
-### Premium Partners
+## Cara Instalasi
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+Buka **Terminal** (Linux/macOS) atau **Git Bash / PowerShell** (Windows), lalu ikuti langkah-langkah berikut satu per satu:
 
-## Contributing
+### Langkah 1 — Unduh Aplikasi
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+git clone https://github.com/feyr9z/spk-diagnosis-penyakit-kulit.git
+cd spk-diagnosis-penyakit-kulit
+```
 
-## Code of Conduct
+### Langkah 2 — Buat File Konfigurasi
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+**Linux / macOS:**
+```bash
+cp .env.example .env
+```
 
-## Security Vulnerabilities
+**Windows (PowerShell):**
+```powershell
+copy .env.example .env
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Langkah 3 — Jalankan Aplikasi
 
-## License
+```bash
+docker compose up -d --build
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+> Proses ini akan mengunduh semua komponen yang dibutuhkan secara otomatis. Pada pertama kali, membutuhkan waktu sekitar **3–10 menit** tergantung kecepatan internet.
+
+### Langkah 4 — Siapkan Database
+
+Jalankan perintah ini **satu per satu** secara berurutan:
+
+```bash
+docker compose exec app composer install
+docker compose exec app php artisan key:generate
+docker compose exec app php artisan migrate --seed
+docker compose exec app npm install
+docker compose exec app npm run build
+```
+
+### Langkah 5 — Buka Aplikasi
+
+Buka browser (Chrome, Firefox, dll.) dan ketik alamat berikut:
+
+```
+http://localhost:8000
+```
+
+---
+
+## Login Pertama Kali
+
+| Role | Username | Password |
+|---|---|---|
+| Super Admin | `superadmin` | `password` |
+| Admin | `admin` | `password` |
+
+---
+
+## Cara Menyalakan & Mematikan Aplikasi
+
+Setelah instalasi selesai, kamu tidak perlu mengulang semua langkah di atas. Cukup gunakan perintah berikut:
+
+**Menyalakan aplikasi:**
+```bash
+docker compose up -d
+```
+
+**Mematikan aplikasi:**
+```bash
+docker compose stop
+```
+
+---
+
+## Lisensi
+
+Aplikasi ini menggunakan lisensi [MIT](https://opensource.org/licenses/MIT).
