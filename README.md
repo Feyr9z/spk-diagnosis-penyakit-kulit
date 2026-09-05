@@ -1,4 +1,4 @@
-# SPK Diagnosis Penyakit Kulit
+# SPK Diagnosis Penyakit Kulit — Ermust Clinic
 
 Aplikasi web untuk membantu diagnosis penyakit kulit menggunakan metode **Simple Additive Weighting (SAW)**.
 
@@ -53,6 +53,8 @@ cp .env.example .env
 copy .env.example .env
 ```
 
+> File `.env` berisi pengaturan aplikasi seperti nama database dan password. Nilai bawaannya sudah langsung bisa dipakai untuk menjalankan aplikasi secara lokal.
+
 ### Langkah 3 — Jalankan Aplikasi
 
 ```bash
@@ -61,7 +63,7 @@ docker compose up -d --build
 
 > Proses ini akan mengunduh semua komponen yang dibutuhkan secara otomatis. Pada pertama kali, membutuhkan waktu sekitar **3–10 menit** tergantung kecepatan internet.
 
-### Langkah 4 — Siapkan Database
+### Langkah 4 — Siapkan Database & Aset
 
 Jalankan perintah ini **satu per satu** secara berurutan:
 
@@ -72,6 +74,8 @@ docker compose exec app php artisan migrate --seed
 docker compose exec app npm install
 docker compose exec app npm run build
 ```
+
+> Jika muncul error duplikasi data pada `migrate --seed`, itu normal karena data sudah pernah dibuat sebelumnya. Abaikan saja dan lanjutkan ke perintah berikutnya.
 
 ### Langkah 5 — Buka Aplikasi
 
@@ -90,6 +94,8 @@ http://localhost:8000
 | Super Admin | `superadmin` | `password` |
 | Admin | `admin` | `password` |
 
+> **Penting:** Segera ganti password setelah login pertama kali melalui menu **Profil → Ubah Password**.
+
 ---
 
 ## Cara Menyalakan & Mematikan Aplikasi
@@ -105,6 +111,17 @@ docker compose up -d
 ```bash
 docker compose stop
 ```
+
+---
+
+## Pemecahan Masalah Umum
+
+| Masalah | Solusi |
+|---|---|
+| Port 8000 sudah dipakai | Ganti baris `"8000:80"` menjadi `"8080:80"` di `docker-compose.yml`, lalu akses `http://localhost:8080` |
+| Port 3308 sudah dipakai | Ganti baris `"3308:3306"` menjadi `"3309:3306"` di `docker-compose.yml` |
+| Aplikasi tidak muncul setelah `docker compose up` | Tunggu 30 detik, kemudian refresh browser |
+| Lupa password login | Jalankan: `docker compose exec app php artisan db:seed --class=UserSeeder --force` |
 
 ---
 
