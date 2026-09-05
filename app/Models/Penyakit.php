@@ -13,6 +13,7 @@ class Penyakit extends Model
         'kode_penyakit',
         'nama_penyakit',
         'deskripsi',
+        'tingkat_keparahan',
     ];
 
     public function nilaiKecocokan(): HasMany

@@ -7,6 +7,7 @@ const form = useForm({
     kode_penyakit: '',
     nama_penyakit: '',
     deskripsi: '',
+    tingkat_keparahan: 'sedang',
 });
 
 const submit = () => {
@@ -87,6 +88,35 @@ const submit = () => {
                         ></textarea>
                         <p v-if="form.errors.deskripsi" class="text-xs font-semibold text-rose-600 dark:text-rose-500">
                             {{ form.errors.deskripsi }}
+                        </p>
+                    </div>
+
+                    <!-- Tingkat Keparahan -->
+                    <div class="space-y-2">
+                        <label class="block text-sm font-bold text-slate-700 dark:text-slate-300">
+                            Tingkat Keparahan
+                        </label>
+                        <div class="flex gap-3">
+                            <label
+                                v-for="opt in [
+                                    { value: 'ringan', label: 'Ringan', color: 'emerald' },
+                                    { value: 'sedang', label: 'Sedang', color: 'amber' },
+                                    { value: 'parah', label: 'Parah', color: 'rose' },
+                                ]"
+                                :key="opt.value"
+                                class="flex-1 flex items-center justify-center gap-2 rounded-xl border-2 px-4 py-3 cursor-pointer font-bold text-sm transition-all"
+                                :class="form.tingkat_keparahan === opt.value
+                                    ? opt.value === 'ringan' ? 'border-emerald-500 bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-300'
+                                    : opt.value === 'sedang' ? 'border-amber-500 bg-amber-50 dark:bg-amber-500/10 text-amber-700 dark:text-amber-300'
+                                    : 'border-rose-500 bg-rose-50 dark:bg-rose-500/10 text-rose-700 dark:text-rose-300'
+                                    : 'border-slate-200 dark:border-slate-600 text-slate-500 dark:text-slate-400 hover:border-slate-300 dark:hover:border-slate-500'"
+                            >
+                                <input type="radio" :value="opt.value" v-model="form.tingkat_keparahan" class="sr-only" />
+                                <span>{{ opt.label }}</span>
+                            </label>
+                        </div>
+                        <p v-if="form.errors.tingkat_keparahan" class="text-xs font-semibold text-rose-600 dark:text-rose-500">
+                            {{ form.errors.tingkat_keparahan }}
                         </p>
                     </div>
 

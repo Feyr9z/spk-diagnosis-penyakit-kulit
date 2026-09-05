@@ -29,6 +29,19 @@ const hapus = (id) => {
         },
     });
 };
+
+const severityBadge = (level) => {
+    const map = {
+        ringan: 'bg-emerald-100 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-500/30',
+        sedang: 'bg-amber-100 dark:bg-amber-500/20 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-500/30',
+        parah:  'bg-rose-100 dark:bg-rose-500/20 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-500/30',
+    };
+    return map[level] || map['sedang'];
+};
+
+const severityLabel = (level) => {
+    return { ringan: 'Ringan', sedang: 'Sedang', parah: 'Parah' }[level] || 'Sedang';
+};
 </script>
 
 <template>
@@ -59,6 +72,7 @@ const hapus = (id) => {
                                 <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400">No</th>
                                 <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400">Kode</th>
                                 <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400">Nama Penyakit</th>
+                                <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400">Keparahan</th>
                                 <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400">Deskripsi</th>
                                 <th class="px-6 py-4 text-center text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400">Aksi</th>
                             </tr>
@@ -73,6 +87,11 @@ const hapus = (id) => {
                                 </td>
                                 <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-slate-700 dark:text-slate-200">
                                     {{ item.nama_penyakit }}
+                                </td>
+                                <td class="whitespace-nowrap px-6 py-4">
+                                    <span class="inline-flex items-center rounded-lg px-2.5 py-1 text-xs font-bold" :class="severityBadge(item.tingkat_keparahan)">
+                                        {{ severityLabel(item.tingkat_keparahan) }}
+                                    </span>
                                 </td>
                                 <td class="px-6 py-4 text-sm font-medium text-slate-600 dark:text-slate-400 max-w-xs truncate">
                                     {{ item.deskripsi }}
@@ -98,7 +117,7 @@ const hapus = (id) => {
                             </tr>
 
                             <tr v-if="penyakit.length === 0">
-                                <td colspan="5" class="px-6 py-12 text-center text-sm text-slate-500">
+                                <td colspan="6" class="px-6 py-12 text-center text-sm text-slate-500">
                                     <div class="flex flex-col items-center justify-center gap-2">
                                         <Database class="w-8 h-8 opacity-20" />
                                         <p class="font-medium">Belum ada data alternatif (penyakit).</p>

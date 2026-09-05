@@ -66,6 +66,26 @@ const clinicalProgressColors = [
     'bg-slate-400',
     'bg-slate-300',
 ];
+
+const severityBadge = (level) => {
+    const map = {
+        ringan: 'bg-emerald-100 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-500/30',
+        sedang: 'bg-amber-100 dark:bg-amber-500/20 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-500/30',
+        parah:  'bg-rose-100 dark:bg-rose-500/20 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-500/30',
+    };
+    return map[level] || map['sedang'];
+};
+
+const severityLabel = (level) => {
+    return { ringan: 'Ringan', sedang: 'Sedang', parah: 'Parah' }[level] || 'Sedang';
+};
+
+const severityAlert = computed(() => {
+    const level = props.hasilSAW?.ranking?.[0]?.penyakit?.tingkat_keparahan;
+    if (level === 'parah') return { class: 'bg-rose-50 dark:bg-rose-500/10 border-rose-200 dark:border-rose-500/20 text-rose-700 dark:text-rose-300', msg: 'Penyakit ini termasuk kategori PARAH. Segera rujuk ke dokter spesialis.' };
+    if (level === 'sedang') return { class: 'bg-amber-50 dark:bg-amber-500/10 border-amber-200 dark:border-amber-500/20 text-amber-700 dark:text-amber-300', msg: 'Penyakit ini termasuk kategori SEDANG. Disarankan konsultasi dengan dokter.' };
+    return { class: 'bg-emerald-50 dark:bg-emerald-500/10 border-emerald-200 dark:border-emerald-500/20 text-emerald-700 dark:text-emerald-300', msg: 'Penyakit ini termasuk kategori RINGAN. Tetap pantau kondisi pasien.' };
+});
 </script>
 
 <template>
@@ -157,11 +177,16 @@ const clinicalProgressColors = [
                                         </p>
                                     </div>
                                 </div>
-                                <div class="text-right shrink-0">
-                                    <p class="text-xs font-semibold text-slate-500 dark:text-slate-400 mb-0.5">Nilai Preferensi (V)</p>
-                                    <p class="text-xl font-black tabular-nums" :class="index === 0 ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-600 dark:text-slate-300'">
-                                        {{ item.nilai_preferensi.toFixed(4) }}
-                                    </p>
+                                <div class="flex items-center gap-3 shrink-0">
+                                    <span v-if="item.penyakit?.tingkat_keparahan" class="inline-flex items-center rounded-lg px-2.5 py-1 text-xs font-bold" :class="severityBadge(item.penyakit.tingkat_keparahan)">
+                                        {{ severityLabel(item.penyakit.tingkat_keparahan) }}
+                                    </span>
+                                    <div class="text-right">
+                                        <p class="text-xs font-semibold text-slate-500 dark:text-slate-400 mb-0.5">Nilai Preferensi (V)</p>
+                                        <p class="text-xl font-black tabular-nums" :class="index === 0 ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-600 dark:text-slate-300'">
+                                            {{ item.nilai_preferensi.toFixed(4) }}
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                             <!-- Progress Bar -->
@@ -188,6 +213,11 @@ const clinicalProgressColors = [
                         <div class="flex items-center gap-2 mb-4 pb-4 border-b border-slate-200 dark:border-slate-700">
                             <Stethoscope class="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
                             <h3 class="font-bold text-slate-900 dark:text-white">Deskripsi Medis — Diagnosis Utama</h3>
+                        </div>
+                        <!-- Severity Alert -->
+                        <div v-if="hasilSAW.ranking?.length" class="mb-4 flex items-start gap-2 rounded-xl border p-3" :class="severityAlert.class">
+                            <AlertCircle class="w-4 h-4 shrink-0 mt-0.5" />
+                            <p class="text-xs font-semibold leading-relaxed">{{ severityAlert.msg }}</p>
                         </div>
                         <p class="text-sm font-medium text-slate-700 dark:text-slate-300 leading-relaxed text-justify">
                             {{ diagnosis.penyakit.deskripsi }}

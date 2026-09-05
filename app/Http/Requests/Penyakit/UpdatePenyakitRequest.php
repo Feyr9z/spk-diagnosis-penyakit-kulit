@@ -18,6 +18,7 @@ class UpdatePenyakitRequest extends FormRequest
             'kode_penyakit' => ['required', 'string', 'max:20', Rule::unique('penyakit', 'kode_penyakit')->ignore($this->route('penyakit'))],
             'nama_penyakit' => ['required', 'string', 'max:255'],
             'deskripsi' => ['required', 'string'],
+            'tingkat_keparahan' => ['required', 'in:ringan,sedang,parah'],
         ];
     }
 
@@ -29,6 +30,8 @@ class UpdatePenyakitRequest extends FormRequest
             'kode_penyakit.max' => 'Kode penyakit maksimal 20 karakter.',
             'nama_penyakit.required' => 'Nama penyakit wajib diisi.',
             'deskripsi.required' => 'Deskripsi wajib diisi.',
+            'tingkat_keparahan.required' => 'Tingkat keparahan wajib dipilih.',
+            'tingkat_keparahan.in' => 'Tingkat keparahan tidak valid.',
         ];
     }
 }
